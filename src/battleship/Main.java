@@ -1,4 +1,4 @@
-package batalhanavales;
+package battleship;
 
 /**
  *
