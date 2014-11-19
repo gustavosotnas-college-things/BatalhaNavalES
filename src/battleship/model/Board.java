@@ -1,4 +1,4 @@
-package battleship;
+package battleship.model;
 
 public abstract class Board {
 

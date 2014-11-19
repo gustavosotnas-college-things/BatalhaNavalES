@@ -1,4 +1,4 @@
-package battleship;
+package battleship.model;
 
 public class BoardDecorator extends Board {
 
