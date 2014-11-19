@@ -13,7 +13,7 @@ public class Main {
             System.err.println(ex.getMessage());
         }
     }
-    
+
     private static void menuHeaderBattleship()
     {
         System.out.println("\n=================================================");
@@ -46,9 +46,9 @@ public class Main {
 
     public static int menuModoTradicional() throws BattleshipException
     {
-        Scanner leitor = new Scanner(System.in);
+
         boolean finished = false;
-        int opcao = 0;
+        int opcao;
 
         while (!finished)
         {
@@ -58,19 +58,21 @@ public class Main {
             System.out.println("2 - Intermediário");
             System.out.println("3 - Difícil");
             System.out.print("\nOpção: ");
-            try {
-                opcao = Integer.parseInt(leitor.nextLine().trim());
-            } catch (NumberFormatException ex) { // Este catch faz o programa inteiro parar, pois o catch está para o "main"
-                throw new BattleshipException("EXCEÇÃO: Opção inválida. Digite apenas números!");
-            }
+
         }
         return opcao;
     }
     
-    private static int lerOpcaoMenu()
+    private static int lerOpcaoMenu() throws BattleshipException
     {
-        return 0;
-        
+        Scanner leitor = new Scanner(System.in);
+        int opcao;
+        try {
+            opcao = Integer.parseInt(leitor.nextLine().trim());
+        } catch (NumberFormatException ex) { // Este catch faz o programa inteiro parar, pois o catch está para o "main"
+            throw new BattleshipException("EXCEÇÃO: Opção inválida. Digite apenas números!");
+        }
+        return opcao;
     }
     
     public static int menuModoPQQD() throws BattleshipException
