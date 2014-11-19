@@ -6,7 +6,7 @@ public class BattleshipException extends Exception
     {
         super(mensagem);
     }
-    //sobrecarga
+    //sobrecarga (mensagem default)
     public BattleshipException ()
     {
         super("EXCEÇÃO: Operação Inválida no Batalha Naval.");
