@@ -1,7 +1,6 @@
 package battleship.view;
 
-import battleship.controller.BattleshipException;
-import battleship.controller.MenuBattleshipHelper;
+import battleship.controller.*;
 import java.util.Scanner;
 
 public class Main {
@@ -39,7 +38,7 @@ public class Main {
         try {
             opcao = Integer.parseInt(leitor.nextLine().trim());
         } catch (NumberFormatException ex) { // Este catch faz o programa inteiro parar, pois o catch está para o "main"
-            throw new BattleshipException("EXCEÇÃO: Opção inválida. Digite apenas números!");
+            throw new BattleshipMenuException("EXCEÇÃO: Opção inválida. Digite apenas números!");
         }
 //        }
         MenuBattleshipHelper.processarOpcaoMainMenu(opcao);
@@ -66,6 +65,12 @@ public class Main {
             }
         }
         return opcao;
+    }
+    
+    private static int lerOpcaoMenu()
+    {
+        return 0;
+        
     }
     
     public static int menuModoPQQD() throws BattleshipException
