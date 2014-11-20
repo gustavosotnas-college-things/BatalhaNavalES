@@ -1,17 +1,28 @@
 package battleship.view;
 
 import battleship.controller.*;
+import battleship.model.Jogo;
 import java.util.Scanner;
 
 public class Main {
 
+    private static boolean finished; //variavel que serve de "flag" para término de loops de menu
+    
     public static void main(String[] args)
     {
         try {
             mainMenuBattleship();
-        } catch (BattleshipException ex) {
-            System.err.println(ex.getMessage());
+        } catch (BattleshipException bex) { //esse catch é para exceptions que terminam o programa
+            System.err.println(bex.getMessage());
         }
+    }
+    
+    public static boolean isFinished() {
+        return finished;
+    }
+
+    public static void setFinished(boolean aFinished) {
+        finished = aFinished;
     }
 
     private static void menuHeaderBattleship()
@@ -21,68 +32,76 @@ public class Main {
         System.out.println("=================================================");
         System.out.println("\nMENU\n");
     }
-    
+
     public static void mainMenuBattleship() throws BattleshipException
     {
-        Scanner leitor = new Scanner(System.in);
-        int opcao;
+        setFinished(false); //inicializando com false para entrar no loop
 
-//        while (!finished)
-//        {
-        menuHeaderBattleship();
-        System.out.println("Escolha o modo do jogo: \n");
-        System.out.println("1 - Modo Tradicional");
-        System.out.println("2 - Modo PQQD");
-        System.out.println("0 - Sair");
-        System.out.print("\nOpção: ");
-        try {
-            opcao = Integer.parseInt(leitor.nextLine().trim());
-        } catch (NumberFormatException ex) { // Este catch faz o programa inteiro parar, pois o catch está para o "main"
-            throw new BattleshipMenuException("EXCEÇÃO: Opção inválida. Digite apenas números!");
-        }
-//        }
-        MenuBattleshipHelper.processarOpcaoMainMenu(opcao);
-    }
-
-    public static int menuModoTradicional() throws BattleshipException
-    {
-
-        boolean finished = false;
-        int opcao;
-
-        while (!finished)
+        while (!isFinished())
         {
             menuHeaderBattleship();
-            System.out.println("Escolha a dificulade: \n");
+            System.out.println("Escolha o modo do jogo: \n");
+            System.out.println("1 - Modo Tradicional");
+            System.out.println("2 - Modo PQQD");
+            System.out.println("0 - Sair");
+            try
+            {
+                MenuBattleshipHelper.processarOpcaoMainMenu(lerOpcaoMenu()); //lê a entrada do usuário (teclado)
+            }
+            catch (BattleshipMenuException bmex) //esse catch é para exceptions relacionados a erros por parte do usuário, apenas volta ao menu
+            {
+                System.err.println(bmex.getMessage());
+                MenuBattleshipHelper.sleep(1); //pausa de 1 segundo
+            }
+        }
+    }
+
+    public static void menuModosDeJogo() throws BattleshipMenuException
+    {
+        setFinished(false);
+
+        while (!isFinished())
+        {
+            menuHeaderBattleship();
+            System.out.println("Escolha a dificuldade: \n");
             System.out.println("1 - Fácil");
             System.out.println("2 - Intermediário");
             System.out.println("3 - Difícil");
-            System.out.print("\nOpção: ");
-
+            System.out.println("0 - Voltar ao menu principal");
+            try
+            {
+                MenuBattleshipHelper.processarOpcaoMenuModosJogo(lerOpcaoMenu()); //lê a entrada do usuário (teclado)
+            }
+            catch (BattleshipMenuException bmex) //esse catch é para exceptions relacionados a erros por parte do usuário, apenas volta ao menu
+            {
+                System.err.println(bmex.getMessage());
+                MenuBattleshipHelper.sleep(1); //pausa de 1 segundo
+            }
         }
-        return opcao;
     }
     
-    private static int lerOpcaoMenu() throws BattleshipException
+    private static int lerOpcaoMenu() throws BattleshipMenuException
     {
         Scanner leitor = new Scanner(System.in);
         int opcao;
+        System.out.print("\nOpção: ");
         try {
             opcao = Integer.parseInt(leitor.nextLine().trim());
-        } catch (NumberFormatException ex) { // Este catch faz o programa inteiro parar, pois o catch está para o "main"
-            throw new BattleshipException("EXCEÇÃO: Opção inválida. Digite apenas números!");
+        } catch (NumberFormatException ex) {
+            throw new BattleshipMenuException("EXCEÇÃO: Opção inválida. Digite apenas números!");
         }
         return opcao;
     }
     
-    public static int menuModoPQQD() throws BattleshipException
+    public static boolean voltarMenuPrincipal()
     {
-        return 0;
-        // a implementar
+        System.out.println("\nVoltando ao menu principal.\n");
+        return true;
     }
     
-    public static void finalizarPrograma()
+    public static boolean finalizarPrograma()
     {
-        System.out.println("Finalizando programa.");
+        System.out.println("\nFinalizando programa.\n");
+        return true;
     }
 }
