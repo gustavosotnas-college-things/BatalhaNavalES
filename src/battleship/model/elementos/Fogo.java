@@ -1,4 +1,4 @@
-package battleship.model;
+package battleship.model.elementos;
 
 public class Fogo extends DecoradorTabuleiro{
     

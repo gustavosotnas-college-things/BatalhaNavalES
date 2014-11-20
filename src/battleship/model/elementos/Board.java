@@ -1,6 +1,6 @@
-package battleship.model;
+package battleship.model.elementos;
 
-public abstract class Tabuleiro {
+public abstract class Board {
 
     String status;
 
