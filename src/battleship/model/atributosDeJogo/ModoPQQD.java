@@ -1,5 +1,5 @@
 package battleship.model.atributosDeJogo;
 
-public class ModoPQQD extends ModoDeJogo{
+public class ModoPQQD implements ModoDeJogo{
     
 }

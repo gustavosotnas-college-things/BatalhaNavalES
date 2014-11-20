@@ -1,5 +1,5 @@
 package battleship.model.atributosDeJogo;
 
-public class ModoTradicional extends ModoDeJogo{
+public class ModoTradicional implements ModoDeJogo{
     
 }

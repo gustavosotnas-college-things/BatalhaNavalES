@@ -1,5 +1,5 @@
 package battleship.model.atributosDeJogo;
 
-public abstract class DificuldadeDoJogo {
+public interface DificuldadeDoJogo {
     
 }
