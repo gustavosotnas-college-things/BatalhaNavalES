@@ -12,7 +12,7 @@ public class Jogo
     
     //OBS.: depois temos que terminar de aplicar o Strategy para um desses campos, igual o problema do pato.
 
-    public int getModoDeJogo() {
+/*    public int getModoDeJogo() {
         return modoDeJogo;
     }
 
@@ -31,7 +31,7 @@ public class Jogo
     public int getModoDeDistribuicao() {
         return modoDeDistribuicao;
     }
-
+*/
     public void setModoDeDistribuicao(int modoDeDistribuicao) {
         this.modoDeDistribuicao = modoDeDistribuicao;
     }
