@@ -1,6 +1,5 @@
 /* Classe genérica para colocar funções relacionadas ao controle do jogo, 
-pode alterar o nome ou colocar mais classes dentro desse pacote depois */
-
+ pode alterar o nome ou colocar mais classes dentro desse pacote depois */
 package battleship.controller;
 
 import battleship.view.Main;
@@ -9,11 +8,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MenuBattleshipHelper {
-    
-    public static void processarOpcaoMainMenu (int opcao) throws BattleshipMenuException
-    {
-        switch (opcao)
-        {
+
+    public static void processarOpcaoMainMenu(int opcao) throws BattleshipMenuException {
+        switch (opcao) {
             case 1:
 //                novojogo.setModoDeJogo(1);
                 Main.menuModosDeJogo();
@@ -30,10 +27,8 @@ public class MenuBattleshipHelper {
         }
     }
 
-    public static void processarOpcaoMenuModosJogo (int opcao) throws BattleshipMenuException
-    {
-        switch (opcao)
-        {
+    public static void processarOpcaoMenuModosJogo(int opcao) throws BattleshipMenuException {
+        switch (opcao) {
             case 1:
 //                Main.setTabuleiro9x9();
                 break;
@@ -51,10 +46,9 @@ public class MenuBattleshipHelper {
         }
     }
 
-    public static void sleep (int tempoEmSegundos)
-    {
+    public static void sleep(int tempoEmSegundos) {
         try {
-            Thread.sleep(tempoEmSegundos*1000);
+            Thread.sleep(tempoEmSegundos * 1000);
         } catch (InterruptedException ex) {
             Logger.getLogger(MenuBattleshipHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
