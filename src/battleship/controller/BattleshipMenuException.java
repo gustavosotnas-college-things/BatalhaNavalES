@@ -1,14 +1,13 @@
 package battleship.controller;
 
-public class BattleshipMenuException extends BattleshipException
-{
-    public BattleshipMenuException (String mensagem)
-    {
+public class BattleshipMenuException extends BattleshipException {
+
+    public BattleshipMenuException(String mensagem) {
         super(mensagem);
     }
+
     //sobrecarga (mensagem default)
-    public BattleshipMenuException ()
-    {
+    public BattleshipMenuException() {
         super("EXCEÇÃO: Opção inválida.");
     }
 }
