@@ -5,6 +5,7 @@ package battleship.controller;
 import battleship.view.BattleshipMenuUI;
 import battleship.model.Jogo;
 import battleship.model.atributosDeJogo.*;
+import battleship.model.elementos.Celula;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
