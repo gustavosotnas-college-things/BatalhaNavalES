@@ -34,7 +34,7 @@ public class MenuBattleshipHelper {
         switch (opcao) {
             case 1:
 //                BattleshipMenuUI.setTabuleiro9x9();
-                List tabuleiro;
+                Object tabuleiro;
                 DificuldadeDoJogo modoFacil = new DifFacil();
                 tabuleiro = modoFacil.InicializaTabuleiro();
 //                BattleshipMenuUI.menuModoDistribuicao(tabuleiro); //não implementado
