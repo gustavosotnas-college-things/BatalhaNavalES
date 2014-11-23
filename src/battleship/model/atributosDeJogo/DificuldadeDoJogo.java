@@ -7,12 +7,15 @@ public abstract class DificuldadeDoJogo {
     
         private int tamanhoTabuleiro; //variável abstrata
         
-        public ArrayList InicializaTabuleiro() {
-        ArrayList listaTabuleiro = new ArrayList();
+        public Object InicializaTabuleiro() {
+        Celula[][] listaTabuleiro = new Celula[tamanhoTabuleiro][tamanhoTabuleiro];
 
         for (int i = 0; i < tamanhoTabuleiro; i++) {
-            Celula celula = new Celula();
-            listaTabuleiro.add(celula);
+            for(int j = 0; j < tamanhoTabuleiro; j++){
+                Celula celula = new Celula();
+                listaTabuleiro[i][j] = celula;
+            }
+            
         }
         return listaTabuleiro;
     }
