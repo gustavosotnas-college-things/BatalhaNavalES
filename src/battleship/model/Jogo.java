@@ -1,5 +1,6 @@
 package battleship.model;
 
+import battleship.model.elementos.iteratorJogo.Tabuleiro;
 import battleship.controller.BattleshipMenuException;
 
 import battleship.model.atributosDeJogo.*;

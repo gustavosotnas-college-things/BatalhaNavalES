@@ -2,6 +2,10 @@ package battleship.model.atributosDeJogo;
 
 public class DifDificil implements DificuldadeDoJogo {
 
-    private int tamanhoTabuleiro = 15; //15 x 15
+    private final int tamanhoTabuleiro = 15; 
+
+    public int getTamanhoTabuleiro() {
+        return tamanhoTabuleiro;
+    }
 
 }
