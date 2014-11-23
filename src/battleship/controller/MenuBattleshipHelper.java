@@ -5,6 +5,7 @@ package battleship.controller;
 import battleship.view.Main;
 import battleship.model.Jogo;
 import battleship.model.atributosDeJogo.*;
+import battleship.model.elementos.Celula;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,7 +34,7 @@ public class MenuBattleshipHelper {
         switch (opcao) {
             case 1:
 //                Main.setTabuleiro9x9();
-                List tabuleiro;
+                Object tabuleiro;
                 DificuldadeDoJogo modoFacil = new DifFacil();
                 tabuleiro = modoFacil.InicializaTabuleiro();
 //                Main.menuModoDistribuicao(tabuleiro); //não implementado
