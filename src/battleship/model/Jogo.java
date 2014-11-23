@@ -11,6 +11,16 @@ public class Jogo
     private int modoDeDistribuicao; //1 para Distribuição da frota "Automática" e 2 para Distribuição da frota "Manual"
     
     //OBS.: depois temos que terminar de aplicar o Strategy para um desses campos, igual o problema do pato.
+    
+    public void JogoTradicional(){
+         // Implementação dos metodos necessarios para que execute o modo de jogo tradicional
+    }
+    
+    
+    public void JogoPQQD(){
+        // Implementação dos metodos necessarios para que execute o modo de jogo PQQD
+    }
+    
 
 /*    public int getModoDeJogo() {
         return modoDeJogo;
