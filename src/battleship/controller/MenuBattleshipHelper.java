@@ -36,7 +36,7 @@ public class MenuBattleshipHelper {
                 List tabuleiro;
                 DifFacil modoFacil = new DifFacil();
                 tabuleiro = modoFacil.InicializaTabuleiro();
-                Main.menuModoDistribuicao(tabuleiro);
+//                Main.menuModoDistribuicao(tabuleiro); //não implementado
                 break;
             case 2:
 //                Main.setTabuleiro12x12();
@@ -61,7 +61,7 @@ public class MenuBattleshipHelper {
 
             case 1:
                 ModoDistribAuto automatico = new ModoDistribAuto();
-                automatico.InicializaNavios(tabuleiro);
+//                automatico.InicializaNavios(tabuleiro); //não implementado
                 break;
 
             case 2:
