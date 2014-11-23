@@ -12,15 +12,15 @@ import java.util.logging.Logger;
 
 public class MenuBattleshipHelper {
 
-    public static void processarOpcaoMainMenu(int opcao) throws BattleshipMenuException {
+    public static ModoDeJogo processarOpcaoMainMenu(int opcao) throws BattleshipMenuException {
+        ModoDeJogo modoDeJogo = null;
         switch (opcao) {
             case 1:
-//                novojogo.setModoDeJogo(1);
-                BattleshipMenuUI.menuModosDeJogo();
+                modoDeJogo = new ModoTradicional();
                 break;
             case 2:
-//                novojogo.setModoDeJogo(2);
-                BattleshipMenuUI.menuModosDeJogo();
+                modoDeJogo = new ModoPQQD();
+
                 break;
             case 0:
                 BattleshipMenuUI.setFinished(BattleshipMenuUI.finalizarPrograma());
@@ -28,26 +28,22 @@ public class MenuBattleshipHelper {
             default:
                 throw new BattleshipMenuException("EXCEÇÃO: Opção inválida. Escolha apenas uma das opções listadas.");
         }
+        return modoDeJogo;
     }
 
-    public static void processarOpcaoMenuModosJogo(int opcao) throws BattleshipMenuException {
+    public static DificuldadeDoJogo processarOpcaoMenuDificuldade(int opcao) throws BattleshipMenuException {
+        DificuldadeDoJogo dificuldade = null;
         switch (opcao) {
             case 1:
-//                BattleshipMenuUI.setTabuleiro9x9();
-                Object tabuleiro;
-                DificuldadeDoJogo modoFacil = new DifFacil();
-                tabuleiro = modoFacil.InicializaTabuleiro();
-//                BattleshipMenuUI.menuModoDistribuicao(tabuleiro); //não implementado
+                dificuldade = new DifFacil();
+
                 break;
             case 2:
-//                BattleshipMenuUI.setTabuleiro12x12();
-                DificuldadeDoJogo modoIntermediario = new DifIntermediario();
-                modoIntermediario.InicializaTabuleiro();
+                dificuldade = new DifIntermediario();
+
                 break;
             case 3:
-//                BattleshipMenuUI.setTabuleiro15x15();
-                DificuldadeDoJogo modoDificil = new DifDificil();
-                modoDificil.InicializaTabuleiro();
+                dificuldade = new DifDificil();
                 break;
             case 0:
                 BattleshipMenuUI.setFinished(BattleshipMenuUI.voltarMenuPrincipal());
@@ -55,17 +51,23 @@ public class MenuBattleshipHelper {
             default:
                 throw new BattleshipMenuException("EXCEÇÃO: Opção inválida. Escolha apenas uma das opções listadas.");
         }
+
+        return dificuldade;
     }
 
-    public static void processarMenuModoDistribuicao(int opcao, List tabuleiro) throws BattleshipMenuException {
+    public static ModoDeDistribuicao processarMenuModoDistribuicao(int opcao) throws BattleshipMenuException {
+
+        ModoDeDistribuicao distribuicao = null;
         switch (opcao) {
 
             case 1:
-                ModoDeDistribuicao automatico = new ModoDistribAuto();
-//                automatico.InicializaNavios(tabuleiro); //não implementado
+
+                distribuicao = new ModoDistribAuto();
                 break;
 
             case 2:
+
+                distribuicao = new ModoDistribManual();
                 break;
 
             case 0:
@@ -74,6 +76,8 @@ public class MenuBattleshipHelper {
             default:
                 throw new BattleshipMenuException("EXCEÇÃO: Opção inválida. Escolha apenas uma das opções listadas.");
         }
+
+        return distribuicao;
     }
 
     public static void sleep(int tempoEmSegundos) {
@@ -81,6 +85,12 @@ public class MenuBattleshipHelper {
             Thread.sleep(tempoEmSegundos * 1000);
         } catch (InterruptedException ex) {
             Logger.getLogger(MenuBattleshipHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void verificaModoJogo(Object mode) throws BattleshipMenuException {
+        if (mode == null) {
+            throw new BattleshipMenuException("EXCEÇÂO: Jogo não inicializado");
         }
     }
 }
