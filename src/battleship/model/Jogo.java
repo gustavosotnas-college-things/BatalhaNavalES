@@ -12,17 +12,7 @@ public class Jogo
     
     //OBS.: depois temos que terminar de aplicar o Strategy para um desses campos, igual o problema do pato.
     
-    public void JogoTradicional(){
-         // Implementação dos metodos necessarios para que execute o modo de jogo tradicional
-    }
-    
-    
-    public void JogoPQQD(){
-        // Implementação dos metodos necessarios para que execute o modo de jogo PQQD
-    }
-    
-
-/*    public int getModoDeJogo() {
+    /*    public int getModoDeJogo() {
         return modoDeJogo;
     }
 
