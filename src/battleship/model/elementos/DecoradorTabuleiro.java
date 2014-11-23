@@ -7,5 +7,5 @@ public class DecoradorTabuleiro extends Tabuleiro {
     public DecoradorTabuleiro(Tabuleiro umTabuleiro) {
         umTabuleiro = tabuleiro;
     }
-    
+
 }
