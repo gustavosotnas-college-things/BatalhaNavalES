@@ -34,18 +34,18 @@ public class MenuBattleshipHelper {
             case 1:
 //                Main.setTabuleiro9x9();
                 List tabuleiro;
-                DifFacil modoFacil = new DifFacil();
+                DificuldadeDoJogo modoFacil = new DifFacil();
                 tabuleiro = modoFacil.InicializaTabuleiro();
 //                Main.menuModoDistribuicao(tabuleiro); //não implementado
                 break;
             case 2:
 //                Main.setTabuleiro12x12();
-                DifIntermediario modoIntermediario = new DifIntermediario();
+                DificuldadeDoJogo modoIntermediario = new DifIntermediario();
                 modoIntermediario.InicializaTabuleiro();
                 break;
             case 3:
 //                Main.setTabuleiro15x15();
-                DifDificil modoDificil = new DifDificil();
+                DificuldadeDoJogo modoDificil = new DifDificil();
                 modoDificil.InicializaTabuleiro();
                 break;
             case 0:
@@ -60,7 +60,7 @@ public class MenuBattleshipHelper {
         switch (opcao) {
 
             case 1:
-                ModoDistribAuto automatico = new ModoDistribAuto();
+                ModoDeDistribuicao automatico = new ModoDistribAuto();
 //                automatico.InicializaNavios(tabuleiro); //não implementado
                 break;
 
