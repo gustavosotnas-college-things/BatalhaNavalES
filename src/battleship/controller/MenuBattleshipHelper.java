@@ -4,6 +4,7 @@ package battleship.controller;
 
 import battleship.view.Main;
 import battleship.model.Jogo;
+import battleship.model.atributosDeJogo.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,12 +32,18 @@ public class MenuBattleshipHelper {
         switch (opcao) {
             case 1:
 //                Main.setTabuleiro9x9();
+                DifFacil modoFacil = new DifFacil();
+                modoFacil.InicializaTabuleiro();
                 break;
             case 2:
 //                Main.setTabuleiro12x12();
+                DifIntermediario modoIntermediario = new DifIntermediario();
+                modoIntermediario.InicializaTabuleiro();
                 break;
             case 3:
 //                Main.setTabuleiro15x15();
+                DifDificil modoDificil = new DifDificil();
+                modoDificil.InicializaTabuleiro();
                 break;
             case 0:
                 Main.setFinished(Main.voltarMenuPrincipal());
