@@ -2,7 +2,7 @@
  pode alterar o nome ou colocar mais classes dentro desse pacote depois */
 package battleship.controller;
 
-import battleship.view.Main;
+import battleship.view.BattleshipMenuUI;
 import battleship.model.Jogo;
 import battleship.model.atributosDeJogo.*;
 import java.util.List;
@@ -15,14 +15,14 @@ public class MenuBattleshipHelper {
         switch (opcao) {
             case 1:
 //                novojogo.setModoDeJogo(1);
-                Main.menuModosDeJogo();
+                BattleshipMenuUI.menuModosDeJogo();
                 break;
             case 2:
 //                novojogo.setModoDeJogo(2);
-                Main.menuModosDeJogo();
+                BattleshipMenuUI.menuModosDeJogo();
                 break;
             case 0:
-                Main.setFinished(Main.finalizarPrograma());
+                BattleshipMenuUI.setFinished(BattleshipMenuUI.finalizarPrograma());
                 break;
             default:
                 throw new BattleshipMenuException("EXCEÇÃO: Opção inválida. Escolha apenas uma das opções listadas.");
@@ -32,24 +32,24 @@ public class MenuBattleshipHelper {
     public static void processarOpcaoMenuModosJogo(int opcao) throws BattleshipMenuException {
         switch (opcao) {
             case 1:
-//                Main.setTabuleiro9x9();
+//                BattleshipMenuUI.setTabuleiro9x9();
                 List tabuleiro;
                 DificuldadeDoJogo modoFacil = new DifFacil();
                 tabuleiro = modoFacil.InicializaTabuleiro();
-//                Main.menuModoDistribuicao(tabuleiro); //não implementado
+//                BattleshipMenuUI.menuModoDistribuicao(tabuleiro); //não implementado
                 break;
             case 2:
-//                Main.setTabuleiro12x12();
+//                BattleshipMenuUI.setTabuleiro12x12();
                 DificuldadeDoJogo modoIntermediario = new DifIntermediario();
                 modoIntermediario.InicializaTabuleiro();
                 break;
             case 3:
-//                Main.setTabuleiro15x15();
+//                BattleshipMenuUI.setTabuleiro15x15();
                 DificuldadeDoJogo modoDificil = new DifDificil();
                 modoDificil.InicializaTabuleiro();
                 break;
             case 0:
-                Main.setFinished(Main.voltarMenuPrincipal());
+                BattleshipMenuUI.setFinished(BattleshipMenuUI.voltarMenuPrincipal());
                 break;
             default:
                 throw new BattleshipMenuException("EXCEÇÃO: Opção inválida. Escolha apenas uma das opções listadas.");
@@ -68,7 +68,7 @@ public class MenuBattleshipHelper {
                 break;
 
             case 0:
-                Main.setFinished(Main.voltarMenuPrincipal());
+                BattleshipMenuUI.setFinished(BattleshipMenuUI.voltarMenuPrincipal());
                 break;
             default:
                 throw new BattleshipMenuException("EXCEÇÃO: Opção inválida. Escolha apenas uma das opções listadas.");
