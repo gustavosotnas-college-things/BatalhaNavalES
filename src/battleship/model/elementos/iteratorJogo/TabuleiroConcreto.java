@@ -4,7 +4,7 @@ import battleship.model.atributosDeJogo.ModoDeJogo;
 import battleship.model.elementos.Celula;
 import java.util.Iterator;
 
-public class TabuleiroConcreto extends Tabuleiro{
+public class TabuleiroConcreto implements TabuleiroInterfaceParaIterator{
 
     protected Celula[][] colecao;
 

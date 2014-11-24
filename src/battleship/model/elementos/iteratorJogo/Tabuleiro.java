@@ -1,9 +1,9 @@
 package battleship.model.elementos.iteratorJogo;
 
 import battleship.model.elementos.Celula;
-import java.util.Iterator;
 
-public abstract class Tabuleiro {
+public abstract class Tabuleiro implements TabuleiroInterfaceParaIterator {
 
-    public abstract Iterator createIterator();
+    //colocar métodos de Decorator aqui
+    public abstract void testeMetodo();
 }
