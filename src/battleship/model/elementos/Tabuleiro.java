@@ -1,17 +1,11 @@
 package battleship.model.elementos;
 
-import battleship.model.atributosDeJogo.DificuldadeDoJogo;
-
 public abstract class Tabuleiro {
-
-    private Celula[][] componentesTabuleiro;
-
-    public Celula[][] getComponentesTabuleiro() {
-        return componentesTabuleiro;
-    }
-
-    public void setComponentesTabuleiro(Celula[][] componentesTabuleiro) {
-        this.componentesTabuleiro = componentesTabuleiro;
+    
+    String whoami = "Tabuleiro genérico";
+    
+    public String whoami() { //getter
+        return whoami;
     }
     
     /*public Tabuleiro (DificuldadeDoJogo param) {

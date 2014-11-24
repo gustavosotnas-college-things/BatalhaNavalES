@@ -9,7 +9,7 @@ public class Main {
         try {
 
             Jogo jogo = BattleshipMenuUI.menuBattleship();
-            System.out.println(jogo.toString());
+            jogo.comecarJogo();
 
         } catch (BattleshipException bex) { //esse catch é para exceptions que terminam o programa
             System.err.println(bex.getMessage());

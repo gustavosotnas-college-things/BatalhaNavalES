@@ -27,13 +27,13 @@ public class BattleshipMenuUI {
     public static Jogo menuBattleship() throws BattleshipMenuException {
 
         ModoDeJogo modoDeJogo = mainMenuBattleship();
-        MenuBattleshipHelper.verificaModoJogo(modoDeJogo);
+        MenuBattleshipHelper.verificaParamJogo(modoDeJogo);
 
         DificuldadeDoJogo dificuldadeDoJogo = menuDificuldadeJogo();
-        MenuBattleshipHelper.verificaModoJogo(dificuldadeDoJogo);
+        MenuBattleshipHelper.verificaParamJogo(dificuldadeDoJogo);
 
         ModoDeDistribuicao modoDeDistribuicao = modoDistribuicaoJogo();
-        MenuBattleshipHelper.verificaModoJogo(modoDeDistribuicao);
+        MenuBattleshipHelper.verificaParamJogo(modoDeDistribuicao);
 
         Jogo novoJogo = new Jogo(modoDeJogo, dificuldadeDoJogo, modoDeDistribuicao);
         return novoJogo;

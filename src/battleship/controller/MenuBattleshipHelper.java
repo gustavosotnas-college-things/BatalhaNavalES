@@ -3,12 +3,7 @@
 package battleship.controller;
 
 import battleship.view.BattleshipMenuUI;
-import battleship.model.Jogo;
 import battleship.model.atributosDeJogo.*;
-import battleship.model.elementos.Celula;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class MenuBattleshipHelper {
 
@@ -84,12 +79,12 @@ public class MenuBattleshipHelper {
         try {
             Thread.sleep(tempoEmSegundos * 1000);
         } catch (InterruptedException ex) {
-            Logger.getLogger(MenuBattleshipHelper.class.getName()).log(Level.SEVERE, null, ex);
+            // faça nada
         }
     }
 
-    public static void verificaModoJogo(Object mode) throws BattleshipMenuException {
-        if (mode == null) {
+    public static void verificaParamJogo (Object param) throws BattleshipMenuException {
+        if (param == null) {
             throw new BattleshipMenuException("EXCEÇÂO: Jogo não inicializado");
         }
     }

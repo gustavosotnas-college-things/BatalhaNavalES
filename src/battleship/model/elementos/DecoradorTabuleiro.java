@@ -1,11 +1,5 @@
 package battleship.model.elementos;
 
-public class DecoradorTabuleiro extends Tabuleiro {
-
-    Tabuleiro tabuleiro;
-
-    public DecoradorTabuleiro(Tabuleiro umTabuleiro) {
-        umTabuleiro = tabuleiro;
-    }
-
+public abstract class DecoradorTabuleiro extends Tabuleiro {
+    public abstract String whoami();
 }
