@@ -2,8 +2,15 @@ package battleship.model.elementos.iteratorJogo;
 
 import battleship.model.elementos.Celula;
 
-public abstract class Tabuleiro implements TabuleiroInterfaceParaIterator {
+public class Tabuleiro {
 
-    //colocar métodos de Decorator aqui
-    public abstract void testeMetodo();
+    private Celula[][] componentesTabuleiro;
+
+    public Celula[][] getComponentesTabuleiro() {
+        return componentesTabuleiro;
+    }
+
+    public void setComponentesTabuleiro(Celula[][] componentesTabuleiro) {
+        this.componentesTabuleiro = componentesTabuleiro;
+    }
 }
