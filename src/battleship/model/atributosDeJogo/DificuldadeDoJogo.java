@@ -4,6 +4,6 @@ import battleship.model.elementos.Celula;
 import java.util.ArrayList;
 
 public interface DificuldadeDoJogo {
-    //private int tamanhoTabuleiro; //variável abstrata
-
+    //private final int tamanhoTabuleiro; //variável "abstrata"
+    public int getTamanhoTabuleiro();
 }

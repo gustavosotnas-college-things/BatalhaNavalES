@@ -1,16 +1,15 @@
 package battleship.model;
 
-import battleship.model.elementos.iteratorJogo.Tabuleiro;
-import battleship.controller.BattleshipMenuException;
+import battleship.model.elementos.Tabuleiro;
+//import battleship.controller.BattleshipMenuException;
 
 import battleship.model.atributosDeJogo.*;
-import battleship.model.elementos.*;
 
 public class Jogo {
 
-    private ModoDeJogo modoDeJogo;
-    private DificuldadeDoJogo dificuldadeDoJogo;
-    private ModoDeDistribuicao modoDeDistribuicao;
+    private final ModoDeJogo modoDeJogo;
+    private final DificuldadeDoJogo dificuldadeDoJogo;
+    private final ModoDeDistribuicao modoDeDistribuicao;
     private Tabuleiro tabuleiro;
 
     public Tabuleiro getTabuleiro() {
@@ -22,7 +21,7 @@ public class Jogo {
     }
 
     //Construtor
-    public Jogo(ModoDeJogo modoDeJogo, DificuldadeDoJogo dificuldadeDoJogo, ModoDeDistribuicao modoDeDistribuicao) throws BattleshipMenuException {
+    public Jogo(ModoDeJogo modoDeJogo, DificuldadeDoJogo dificuldadeDoJogo, ModoDeDistribuicao modoDeDistribuicao) /*throws BattleshipMenuException*/ {
 
         this.modoDeJogo = modoDeJogo;
         this.dificuldadeDoJogo = dificuldadeDoJogo;
