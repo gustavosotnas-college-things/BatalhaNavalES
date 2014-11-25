@@ -5,6 +5,7 @@ import battleship.model.elementos.Tabuleiro;
 import battleship.model.atributosDeJogo.*;
 import battleship.model.elementos.*;
 import battleship.model.elementos.embarcacoes.Submarino;
+import battleship.view.BattleshipGameUI;
 
 public class Jogo {
 
@@ -28,7 +29,7 @@ public class Jogo {
         this.dificuldadeDoJogo = dificuldadeDoJogo;
         this.modoDeDistribuicao = modoDeDistribuicao;
     }
-    
+
     public void comecarJogo() {
 
         tabuleiro = new Tabuleiro[dificuldadeDoJogo.getTamanhoTabuleiro()][dificuldadeDoJogo.getTamanhoTabuleiro()];
@@ -39,5 +40,8 @@ public class Jogo {
                 tabuleiro[i][j] = celula;
             }
         }
+        
+        //EH TESTE!!
+        BattleshipGameUI.exibeTabuleiro(tabuleiro, dificuldadeDoJogo);
     }
 }

@@ -8,6 +8,6 @@ public class BombaSinalizadora extends Fogo{
 
     @Override
     public String whoami() {
-        return tabuleiro.whoami() + "decorado com Bomba Sinalizadora";
+        return tabuleiro.whoami() + "!";
     }
 }

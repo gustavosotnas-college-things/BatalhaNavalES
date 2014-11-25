@@ -8,6 +8,6 @@ public class BombaExplosiva extends Fogo {
 
     @Override
     public String whoami() {
-        return tabuleiro.whoami() + "decorado com Bomba Explosiva";
+        return tabuleiro.whoami() + "*";
     }
 }

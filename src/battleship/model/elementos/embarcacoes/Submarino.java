@@ -11,6 +11,6 @@ public class Submarino extends Embarcacao{
     
     @Override
     public String whoami() {
-        return tabuleiro.whoami() + " decorado com Submarino";
+        return tabuleiro.whoami() + "1";
     }
 }
