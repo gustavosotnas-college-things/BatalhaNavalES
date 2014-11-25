@@ -1,14 +1,7 @@
 package battleship.model.elementos;
 
-public class Embarcacao extends DecoradorTabuleiro {
-    Tabuleiro tabuleiro;
-    
-    public Embarcacao (Tabuleiro tabuleiro){
-        this.tabuleiro = tabuleiro;
-    }
+public abstract class Embarcacao extends DecoradorTabuleiro {
 
     @Override
-    public String whoami() {
-        return tabuleiro.whoami() + " decorado com Embarcacao";
-    }
+    public abstract String whoami();
 }

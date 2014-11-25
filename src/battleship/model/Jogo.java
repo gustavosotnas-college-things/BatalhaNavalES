@@ -5,6 +5,7 @@ import battleship.model.elementos.Tabuleiro;
 
 import battleship.model.atributosDeJogo.*;
 import battleship.model.elementos.*;
+import battleship.model.elementos.embarcacoes.Submarino;
 
 public class Jogo {
 
@@ -33,8 +34,11 @@ public class Jogo {
         // implementação só pra teste do Decorator
         tabuleiro = new Celula();
         tabuleiro = new Agua(tabuleiro); //decorando celula com agua
-        tabuleiro = new Embarcacao(tabuleiro); //decorando celula com embarcacao
+        Embarcacao embarcacao = new Submarino(tabuleiro);
+        tabuleiro = embarcacao;
+        tabuleiro = new Embarcacao(new Submarino(tabuleiro)); //decorando celula com embarcacao
         tabuleiro = new BombaSinalizadora(tabuleiro); //decorando celula com bomba sinalizadora
         System.out.println(tabuleiro.whoami());
     }
+
 }
