@@ -2,7 +2,6 @@ package battleship.model;
 
 import battleship.model.elementos.Tabuleiro;
 //import battleship.controller.BattleshipMenuException;
-
 import battleship.model.atributosDeJogo.*;
 import battleship.model.elementos.*;
 import battleship.model.elementos.embarcacoes.Submarino;
@@ -12,13 +11,13 @@ public class Jogo {
     private final ModoDeJogo modoDeJogo;
     private final DificuldadeDoJogo dificuldadeDoJogo;
     private final ModoDeDistribuicao modoDeDistribuicao;
-    private Tabuleiro tabuleiro;
+    private Tabuleiro[][] tabuleiro;
 
-    public Tabuleiro getTabuleiro() {
+    public Tabuleiro[][] getTabuleiro() {
         return tabuleiro;
     }
 
-    public void setTabuleiro(Tabuleiro tabuleiro) {
+    public void setTabuleiro(Tabuleiro[][] tabuleiro) {
         this.tabuleiro = tabuleiro;
     }
 
@@ -31,14 +30,14 @@ public class Jogo {
     }
     
     public void comecarJogo() {
-        // implementação só pra teste do Decorator
-        tabuleiro = new Celula();
-        tabuleiro = new Agua(tabuleiro); //decorando celula com agua
-        Embarcacao embarcacao = new Submarino(tabuleiro);
-        tabuleiro = embarcacao;
-        tabuleiro = new Embarcacao(new Submarino(tabuleiro)); //decorando celula com embarcacao
-        tabuleiro = new BombaSinalizadora(tabuleiro); //decorando celula com bomba sinalizadora
-        System.out.println(tabuleiro.whoami());
-    }
 
+        tabuleiro = new Tabuleiro[dificuldadeDoJogo.getTamanhoTabuleiro()][dificuldadeDoJogo.getTamanhoTabuleiro()];
+        for (int i = 0; i < dificuldadeDoJogo.getTamanhoTabuleiro(); i++) {
+            for (int j = 0; j < dificuldadeDoJogo.getTamanhoTabuleiro(); j++) {
+                Tabuleiro celula = new Celula();
+                celula = new Agua(celula);
+                tabuleiro[i][j] = celula;
+            }
+        }
+    }
 }

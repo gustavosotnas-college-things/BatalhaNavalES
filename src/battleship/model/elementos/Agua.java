@@ -1,6 +1,6 @@
 package battleship.model.elementos;
 
-public class Agua extends DecoradorTabuleiro{
+public class Agua extends DecoradorElemento{
     Tabuleiro tabuleiro;
     
     public Agua (Tabuleiro tabuleiro){
