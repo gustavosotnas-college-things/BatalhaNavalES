@@ -11,6 +11,6 @@ public class NavioTamanho3 extends Embarcacao{
     
     @Override
     public String whoami() {
-        return tabuleiro.whoami() + " 1";
+        return tabuleiro.whoami() + "3";
     }
 }

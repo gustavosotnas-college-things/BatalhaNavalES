@@ -1,11 +1,14 @@
-/* Classe genérica para colocar funções relacionadas ao controle do jogo, 
+/* Classe genérica para colocar funções relacionadas ao controle do menu do jogo, 
  pode alterar o nome ou colocar mais classes dentro desse pacote depois */
 package battleship.controller;
 
 import battleship.view.BattleshipMenuUI;
 import battleship.model.atributosDeJogo.*;
+import java.util.Scanner;
 
 public class MenuBattleshipHelper {
+
+    private static final int PAGE_SIZE = 50; //variável para saber quanto de tamanho de tela é preciso pular linha
 
     public static ModoDeJogo processarOpcaoMainMenu(int opcao) throws BattleshipMenuException {
         ModoDeJogo modoDeJogo = null;
@@ -15,13 +18,12 @@ public class MenuBattleshipHelper {
                 break;
             case 2:
                 modoDeJogo = new ModoPQQD();
-
                 break;
             case 0:
                 BattleshipMenuUI.setFinished(BattleshipMenuUI.finalizarPrograma());
                 break;
             default:
-                throw new BattleshipMenuException("EXCEÇÃO: Opção inválida. Escolha apenas uma das opções listadas.");
+                throw new BattleshipMenuException("Opção inválida. Escolha apenas uma das opções listadas.");
         }
         return modoDeJogo;
     }
@@ -31,20 +33,18 @@ public class MenuBattleshipHelper {
         switch (opcao) {
             case 1:
                 dificuldade = new DifFacil();
-
                 break;
             case 2:
                 dificuldade = new DifIntermediario();
-
                 break;
             case 3:
                 dificuldade = new DifDificil();
                 break;
             case 0:
-                BattleshipMenuUI.setFinished(BattleshipMenuUI.voltarMenuPrincipal());
+                BattleshipMenuUI.setFinished(BattleshipMenuUI.finalizarPrograma());
                 break;
             default:
-                throw new BattleshipMenuException("EXCEÇÃO: Opção inválida. Escolha apenas uma das opções listadas.");
+                throw new BattleshipMenuException("Opção inválida. Escolha apenas uma das opções listadas.");
         }
 
         return dificuldade;
@@ -56,23 +56,31 @@ public class MenuBattleshipHelper {
         switch (opcao) {
 
             case 1:
-
                 distribuicao = new ModoDistribAuto();
                 break;
-
             case 2:
-
                 distribuicao = new ModoDistribManual();
                 break;
-
             case 0:
-                BattleshipMenuUI.setFinished(BattleshipMenuUI.voltarMenuPrincipal());
+                BattleshipMenuUI.setFinished(BattleshipMenuUI.finalizarPrograma());
                 break;
             default:
-                throw new BattleshipMenuException("EXCEÇÃO: Opção inválida. Escolha apenas uma das opções listadas.");
+                throw new BattleshipMenuException("Opção inválida. Escolha apenas uma das opções listadas.");
         }
 
         return distribuicao;
+    }
+    
+    
+    public static int lerOpcao() throws BattleshipMenuException {
+        Scanner leitor = new Scanner(System.in);
+        int opcao;
+        try {
+            opcao = Integer.parseInt(leitor.nextLine().trim());
+        } catch (NumberFormatException ex) {
+            throw new BattleshipMenuException("Opção inválida. Digite apenas números!");
+        }
+        return opcao;
     }
 
     public static void sleep(int tempoEmSegundos) {
@@ -82,10 +90,16 @@ public class MenuBattleshipHelper {
             // faça nada
         }
     }
+    
+    public static void clearScreen() {
+        for (int i = 0; i < PAGE_SIZE; i++) {
+            System.out.println();
+        }
+    }
 
     public static void verificaParamJogo (Object param) throws BattleshipMenuException {
         if (param == null) {
-            throw new BattleshipMenuException("EXCEÇÂO: Jogo não inicializado");
+            throw new BattleshipMenuException("Jogo não foi iniciado");
         }
     }
 }

@@ -12,6 +12,6 @@ public class PortaAvioes extends Embarcacao {
     
     @Override
     public String whoami() {
-        return tabuleiro.whoami() + "5";
+        return tabuleiro.whoami() + "P";
     }
 }
