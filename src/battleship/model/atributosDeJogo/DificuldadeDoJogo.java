@@ -1,6 +1,6 @@
 package battleship.model.atributosDeJogo;
 
-import battleship.model.elementos.Celula;
+import battleship.model.elementos.Terreno;
 import java.util.ArrayList;
 
 public interface DificuldadeDoJogo {

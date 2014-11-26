@@ -2,7 +2,7 @@ package battleship.model.elementos;
 
 public class BombaExplosiva extends Fogo {
 
-    public BombaExplosiva(Tabuleiro tabuleiro) {
+    public BombaExplosiva(Celula tabuleiro) {
         this.tabuleiro = tabuleiro;
     }
 

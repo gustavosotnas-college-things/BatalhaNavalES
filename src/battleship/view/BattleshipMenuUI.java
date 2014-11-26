@@ -25,20 +25,20 @@ public class BattleshipMenuUI {
     public static Jogo menuBattleship() throws BattleshipMenuException {
 
         ModoDeJogo modoDeJogo = menuModoJogo();
-        MenuBattleshipHelper.verificaParamJogo(modoDeJogo);
+        BattleshipHelper.verificaParamJogo(modoDeJogo);
 
         DificuldadeDoJogo dificuldadeDoJogo = menuDificuldadeJogo();
-        MenuBattleshipHelper.verificaParamJogo(dificuldadeDoJogo);
+        BattleshipHelper.verificaParamJogo(dificuldadeDoJogo);
 
         ModoDeDistribuicao modoDeDistribuicao = modoDistribuicaoJogo();
-        MenuBattleshipHelper.verificaParamJogo(modoDeDistribuicao);
+        BattleshipHelper.verificaParamJogo(modoDeDistribuicao);
 
         Jogo novoJogo = new Jogo(modoDeJogo, dificuldadeDoJogo, modoDeDistribuicao);
         return novoJogo;
     }
 
     public static ModoDeJogo menuModoJogo() throws BattleshipMenuException {
-        MenuBattleshipHelper.clearScreen(); //"limpa a tela"
+        BattleshipHelper.clearScreen(); //"limpa a tela"
         setFinished(false); //inicializando com false para entrar no loop
 
         ModoDeJogo modo = null;
@@ -51,20 +51,20 @@ public class BattleshipMenuUI {
             System.out.println("0 - Sair\n");
             System.out.print("\nOpção: ");
             try {
-                modo = MenuBattleshipHelper.processarOpcaoMainMenu(MenuBattleshipHelper.lerOpcao()); //lê a entrada do usuário (teclado)
+                modo = BattleshipHelper.processarOpcaoMainMenu(BattleshipHelper.lerOpcao()); //lê a entrada do usuário (teclado)
                 setFinished(true);
 
             } catch (BattleshipMenuException bmex) //esse catch é para exceptions relacionados a erros por parte do usuário, apenas volta ao menu
             {
                 System.err.println(bmex.getMessage());
-                MenuBattleshipHelper.sleep(1); //pausa de 1 segundo
+                BattleshipHelper.sleep(1); //pausa de 1 segundo
             }
         }
         return modo;
     }
 
     public static DificuldadeDoJogo menuDificuldadeJogo() throws BattleshipMenuException {
-        MenuBattleshipHelper.clearScreen(); //"limpa a tela"
+        BattleshipHelper.clearScreen(); //"limpa a tela"
         setFinished(false);
 
         DificuldadeDoJogo dificuldade = null;
@@ -78,19 +78,19 @@ public class BattleshipMenuUI {
             System.out.println("0 - Sair");
             System.out.print("\nOpção: ");
             try {
-                dificuldade = MenuBattleshipHelper.processarOpcaoMenuDificuldade(MenuBattleshipHelper.lerOpcao()); //lê a entrada do usuário (teclado)
+                dificuldade = BattleshipHelper.processarOpcaoMenuDificuldade(BattleshipHelper.lerOpcao()); //lê a entrada do usuário (teclado)
                 setFinished(true);
             } catch (BattleshipMenuException bmex) //esse catch é para exceptions relacionados a erros por parte do usuário, apenas volta ao menu
             {
                 System.err.println(bmex.getMessage());
-                MenuBattleshipHelper.sleep(1); //pausa de 1 segundo
+                BattleshipHelper.sleep(1); //pausa de 1 segundo
             }
         }
         return dificuldade;
     }
 
     public static ModoDeDistribuicao modoDistribuicaoJogo() throws BattleshipMenuException {
-        MenuBattleshipHelper.clearScreen(); //"limpa a tela"
+        BattleshipHelper.clearScreen(); //"limpa a tela"
         setFinished(false);
 
         ModoDeDistribuicao distribuicao = null;
@@ -103,12 +103,12 @@ public class BattleshipMenuUI {
             System.out.println("0 - Sair\n");
             System.out.print("\nOpção: ");
             try {
-                distribuicao = MenuBattleshipHelper.processarMenuModoDistribuicao(MenuBattleshipHelper.lerOpcao()); //lê a entrada do usuário (teclado)
+                distribuicao = BattleshipHelper.processarMenuModoDistribuicao(BattleshipHelper.lerOpcao()); //lê a entrada do usuário (teclado)
                 setFinished(true);
             } catch (BattleshipMenuException bmex) //esse catch é para exceptions relacionados a erros por parte do usuário, apenas volta ao menu
             {
                 System.err.println(bmex.getMessage());
-                MenuBattleshipHelper.sleep(1); //pausa de 1 segundo
+                BattleshipHelper.sleep(1); //pausa de 1 segundo
             }
         }
 

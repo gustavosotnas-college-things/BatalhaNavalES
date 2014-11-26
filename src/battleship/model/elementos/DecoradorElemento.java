@@ -1,5 +1,5 @@
 package battleship.model.elementos;
 
-public abstract class DecoradorElemento extends Tabuleiro {
+public abstract class DecoradorElemento extends Celula {
     public abstract String whoami();
 }

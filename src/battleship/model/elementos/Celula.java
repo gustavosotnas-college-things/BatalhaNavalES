@@ -1,8 +1,10 @@
 package battleship.model.elementos;
 
-public class Celula extends Tabuleiro {
+public abstract class Celula {
     
-    public Celula(){
-        whoami = "C";
+    String whoami = "Tabuleiro genérico";
+
+    public String whoami() { //getter
+        return whoami;
     }
 }

@@ -6,7 +6,7 @@ import battleship.view.BattleshipMenuUI;
 import battleship.model.atributosDeJogo.*;
 import java.util.Scanner;
 
-public class MenuBattleshipHelper {
+public class BattleshipHelper {
 
     private static final int PAGE_SIZE = 50; //variável para saber quanto de tamanho de tela é preciso pular linha
 
@@ -46,7 +46,6 @@ public class MenuBattleshipHelper {
             default:
                 throw new BattleshipMenuException("Opção inválida. Escolha apenas uma das opções listadas.");
         }
-
         return dificuldade;
     }
 
@@ -67,7 +66,6 @@ public class MenuBattleshipHelper {
             default:
                 throw new BattleshipMenuException("Opção inválida. Escolha apenas uma das opções listadas.");
         }
-
         return distribuicao;
     }
     

@@ -1,31 +1,43 @@
 package battleship.view;
 
 import battleship.controller.BattleshipException;
-import battleship.controller.BattleshipGameException;
 import battleship.controller.BattleshipMenuException;
-import battleship.controller.MenuBattleshipHelper;
+import battleship.controller.BattleshipHelper;
+import battleship.model.Jogo;
 import battleship.model.Posicao;
 import battleship.model.QtdEmbarcacoes;
-import battleship.model.atributosDeJogo.DificuldadeDoJogo;
-import battleship.model.atributosDeJogo.ModoDeDistribuicao;
-import battleship.model.atributosDeJogo.ModoDeJogo;
 import battleship.model.elementos.*;
 import battleship.model.elementos.embarcacoes.*;
 
 public class BattleshipGameUI {
 
-    public static void exibeTabuleiro(Tabuleiro[][] tabuleiro, DificuldadeDoJogo dificuldadeDoJogo) {
+    public static void exibeTabuleiro(Tabuleiro tabuleiro) {
 
-        for (int i = 0; i < dificuldadeDoJogo.getTamanhoTabuleiro(); i++) {
-            for (int j = 0; j < dificuldadeDoJogo.getTamanhoTabuleiro(); j++) {
-                System.out.print(tabuleiro[i][j].whoami().substring(tabuleiro[i][j].whoami().length() - 1) + "\t"); //imprime somente o último caractere da String
+        for (int i = 0; i < tabuleiro.getTamanho(); i++) {
+            for (int j = 0; j < tabuleiro.getTamanho(); j++) {
+                System.out.print(tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1) + "\t"); //imprime somente o último caractere da String
             }
             System.out.println("\n");
         }
     }
+    
+    public static void exibeTabuleiroFiltrado(Tabuleiro tabuleiro) {
+        
+        for (int i = 0; i < Jogo.getDificuldadeDoJogo().getTamanhoTabuleiro(); i++) {
+            for (int j = 0; j < Jogo.getDificuldadeDoJogo().getTamanhoTabuleiro(); j++) {
+                if(!tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1).contains("~"))
+                    System.out.print("[ ]\t"); //imprime somente o último caractere da String
+                else
+                    System.out.print(tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1) + "\t"); //imprime somente o último caractere da String
+            }
+            System.out.println("\n");
+        }
+    }
+
     public static void legendaTabuleiro() {
         System.out.println("LEGENDA:");
         System.out.println("~ --> Água\n"
+                         + "[ ] --> Névoa\n"
                          + "S --> Submarino\n"
                          + "2 --> Navio de 2 posições\n"
                          + "3 --> Navio de 3 posições\n"
@@ -35,37 +47,53 @@ public class BattleshipGameUI {
                          + "* --> Bomba explosiva\n");
     }
     
-    public static void menuFazerDistribTabuleiro
-        (int numJogador, Tabuleiro[][] tabuleiro, ModoDeJogo modoDeJogo, DificuldadeDoJogo dificuldadeDoJogo, 
-                ModoDeDistribuicao modoDeDistribuicao) throws BattleshipException {
+    public static void menuFazerDistribuicaoTabuleiro
+        (int numJogador, Tabuleiro tabuleiro) throws BattleshipException {
+        BattleshipHelper.clearScreen();
 
         BattleshipMenuUI.menuHeaderBattleship();
-        System.out.print("\nJOGADOR "+numJogador+" - DISTRIBUIÇÃO DE EMBARCAÇÕES");
+        System.out.println("\nJOGADOR "+numJogador+" - DISTRIBUIÇÃO DE EMBARCAÇÕES " + aliasModoDeJogo() + "\n");
+        
+        exibeTabuleiro(tabuleiro);
+        legendaTabuleiro();
+        
+        //menuSetarMunicaoPQQD(...)
 
-        switch (modoDeJogo.getClass().getSimpleName()) {
-            case "ModoTradicional":
-                System.out.println(" MODO TRADICIONAL\n");
-                break;
-            case "ModoPQQD":
-                System.out.println(" MODO PQQD\n");
-                break;
-        }
-
+        // ESSE FOR TEM QUE SER DESACOPLADO!
         for (int i = 0; i < QtdEmbarcacoes.getQtdSubmarino(); i++)
         {
-            Posicao coordenada = menuDistribuirEmbarcacoes(i, dificuldadeDoJogo, "submarino");
-            tabuleiro[coordenada.getX()][coordenada.getY()] = new Submarino(tabuleiro[coordenada.getX()][coordenada.getY()]);
+            Posicao coordenada = menuDistribuirEmbarcacoes(i, "submarino");
+            tabuleiro.setElemento(new Submarino(tabuleiro.getElemento(coordenada)) ,coordenada);
         }
         
-        exibeTabuleiro(tabuleiro, dificuldadeDoJogo);
+        System.out.println("\nTabuleiro do jogador "+numJogador+" com embarcações escondidas:\n");
+        exibeTabuleiroFiltrado(tabuleiro);
+        //System.out.println("Tabuleiro a mostra:");
+        //exibeTabuleiro(tabuleiro);
         legendaTabuleiro();
     }
+        
+    private static String aliasModoDeJogo()
+    {
+        String alias = null;
+        switch (Jogo.getModoDeJogo().getClass().getSimpleName()) {
+            case "ModoTradicional":
+                alias = "MODO TRADICIONAL";
+                break;
+            case "ModoPQQD":
+                alias = "MODO PQQD";
+                break;
+        }
+        return alias;
+    }
     
-    private static Posicao menuDistribuirEmbarcacoes(int i, DificuldadeDoJogo difJogo, String tipoEmbarcacao) throws BattleshipException {
-        System.out.print("Digite a linha que queres colocar o "+ i + tipoEmbarcacao + ": ");
-        int x = MenuBattleshipHelper.lerOpcao();
-        System.out.print("\nDigite a coluna que queres colocar o "+ i + tipoEmbarcacao + ": ");
-        int y = MenuBattleshipHelper.lerOpcao();
-        return new Posicao(x, y, difJogo);
+//    private static menuSetarMunicaoPQQD()
+    
+    private static Posicao menuDistribuirEmbarcacoes(int i, String tipoEmbarcacao) throws BattleshipException {
+        System.out.print("\nDigite a linha que queres colocar o "+ (i+1) +" "+ tipoEmbarcacao + ": ");
+        int x = BattleshipHelper.lerOpcao();
+        System.out.print("Digite a coluna que queres colocar o "+ (i+1) +" "+ tipoEmbarcacao + ": ");
+        int y = BattleshipHelper.lerOpcao();
+        return new Posicao(x, y);
     }
 }

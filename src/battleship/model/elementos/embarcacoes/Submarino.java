@@ -1,16 +1,23 @@
 package battleship.model.elementos.embarcacoes;
 
 import battleship.model.elementos.Embarcacao;
-import battleship.model.elementos.Tabuleiro;
+import battleship.model.elementos.Celula;
 
 public class Submarino extends Embarcacao{
-    Tabuleiro tabuleiro;
-    public Submarino(Tabuleiro tabuleiro) {
+    
+    Celula tabuleiro;
+    private final String nome = "Submarino";
+    
+    public Submarino(Celula tabuleiro) {
         this.tabuleiro = tabuleiro;
     }
     
     @Override
     public String whoami() {
         return tabuleiro.whoami() + "S";
+    }
+
+    public String getNome() {
+        return nome;
     }
 }

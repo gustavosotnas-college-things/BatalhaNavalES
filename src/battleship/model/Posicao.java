@@ -4,21 +4,21 @@
 package battleship.model;
 
 import battleship.controller.BattleshipGameException;
-import battleship.model.atributosDeJogo.DificuldadeDoJogo;
 
 public class Posicao {
     private final int x;
     private final int y;
     
-    public Posicao (int x, int y, DificuldadeDoJogo difJogo) throws BattleshipGameException {
-        if (x >= 0 && x < difJogo.getTamanhoTabuleiro())
+    public Posicao (int x, int y) throws BattleshipGameException {
+        if (isPosicaoTabuleiroValida(x) && isPosicaoTabuleiroValida(y)){
             this.x = x;
-        else
-            throw new BattleshipGameException ("Posição digitada inválida! Tente novamente.");
-        if (y >= 0 && y < difJogo.getTamanhoTabuleiro())
             this.y = y;
-        else
+        } else
             throw new BattleshipGameException ("Posição digitada inválida! Tente novamente.");
+    }
+    
+    public static boolean isPosicaoTabuleiroValida (int n) {
+        return n >= 0 && n < Jogo.getDificuldadeDoJogo().getTamanhoTabuleiro();
     }
 
     public int getX() {
