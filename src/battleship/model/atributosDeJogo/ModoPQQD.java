@@ -1,8 +1,11 @@
 package battleship.model.atributosDeJogo;
 
-import battleship.model.elementos.Celula;
+import battleship.model.Jogo;
+import battleship.model.elementos.*;
+import battleship.view.*;
 
-public class ModoPQQD implements ModoDeJogo{
+public class ModoPQQD implements ModoDeJogo {
+
     private int qtdBombasSinalizadoras;
     private int qtdBombasExplosivas;
 
@@ -11,9 +14,13 @@ public class ModoPQQD implements ModoDeJogo{
         this.qtdBombasSinalizadoras = qtdBombasSinalizadoras;
         this.qtdBombasExplosivas = qtdBombasExplosivas;
     }
-    
-    @Override
-    public void comecarTurno(Celula[][] tabuleiro) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    public void comecarTurno(Tabuleiro tabuleiro1, Tabuleiro tabuleiro2) {
+
+       /* while (embarcacao == 0) {
+            System.out.println("Vez do jogador 1...");
+            BattleshipGameUI.exibeTabuleiro(tabuleiro2);
+            BattleshipMenuUI.MenuTipoBomba();
+        }*/
     }
 }

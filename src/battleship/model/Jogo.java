@@ -11,6 +11,10 @@ public class Jogo {
     private static DificuldadeDoJogo dificuldadeDoJogo;
     private static ModoDeDistribuicao modoDeDistribuicao;
     private Tabuleiro tabuleiroP1; //tabuleiro do Jogador 1
+
+    public Tabuleiro getTabuleiroP1() {
+        return tabuleiroP1;
+    }
     private Tabuleiro tabuleiroP2; //tabuleiro do Jogador 2
     
     public static ModoDeJogo getModoDeJogo() {
@@ -37,6 +41,7 @@ public class Jogo {
     public void comecarJogo() throws BattleshipException {
         inicializarTabuleiros();
         BattleshipGameUI.menuFazerDistribuicaoTabuleiro(1, tabuleiroP1); //Jogador 1
+        //modoDeJogo.comecarTurno(tabuleiroP1);
         //BattleshipGameUI.menuFazerDistribuicaoTabuleiro(2, tabuleiroP2); //Jogador 2
     }
 

@@ -1,6 +1,7 @@
 package battleship.model.atributosDeJogo;
 
 import battleship.model.elementos.Celula;
+import battleship.model.elementos.Tabuleiro;
 
 public class ModoTradicional implements ModoDeJogo{
 
@@ -9,8 +10,8 @@ public class ModoTradicional implements ModoDeJogo{
         //faça nada
     }
 
-    @Override
-    public void comecarTurno(Celula[][] tabuleiro) {
+    public void comecarTurno(Tabuleiro tabuleiro1, Tabuleiro tabuleiro2) {
         
     }
+
 }

@@ -20,15 +20,16 @@ public class BattleshipGameUI {
             System.out.println("\n");
         }
     }
-    
+
     public static void exibeTabuleiroFiltrado(Tabuleiro tabuleiro) {
-        
+
         for (int i = 0; i < Jogo.getDificuldadeDoJogo().getTamanhoTabuleiro(); i++) {
             for (int j = 0; j < Jogo.getDificuldadeDoJogo().getTamanhoTabuleiro(); j++) {
-                if(!tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1).contains("~"))
+                if (!tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1).contains("~")) {
                     System.out.print("[ ]\t"); //imprime somente o último caractere da String
-                else
+                } else {
                     System.out.print(tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1) + "\t"); //imprime somente o último caractere da String
+                }
             }
             System.out.println("\n");
         }
@@ -37,44 +38,40 @@ public class BattleshipGameUI {
     public static void legendaTabuleiro() {
         System.out.println("LEGENDA:");
         System.out.println("~ --> Água\n"
-                         + "[ ] --> Névoa\n"
-                         + "S --> Submarino\n"
-                         + "2 --> Navio de 2 posições\n"
-                         + "3 --> Navio de 3 posições\n"
-                         + "4 --> Navio de 4 posições\n"
-                         + "P --> Porta Aviões\n"
-                         + "! --> Bomba sinalizadora\n"
-                         + "* --> Bomba explosiva\n");
+                + "[ ] --> Névoa\n"
+                + "S --> Submarino\n"
+                + "2 --> Navio de 2 posições\n"
+                + "3 --> Navio de 3 posições\n"
+                + "4 --> Navio de 4 posições\n"
+                + "P --> Porta Aviões\n"
+                + "! --> Bomba sinalizadora\n"
+                + "* --> Bomba explosiva\n");
     }
-    
-    public static void menuFazerDistribuicaoTabuleiro
-        (int numJogador, Tabuleiro tabuleiro) throws BattleshipException {
+
+    public static void menuFazerDistribuicaoTabuleiro(int numJogador, Tabuleiro tabuleiro) throws BattleshipException {
         BattleshipHelper.clearScreen();
 
         BattleshipMenuUI.menuHeaderBattleship();
-        System.out.println("\nJOGADOR "+numJogador+" - DISTRIBUIÇÃO DE EMBARCAÇÕES " + aliasModoDeJogo() + "\n");
-        
+        System.out.println("\nJOGADOR " + numJogador + " - DISTRIBUIÇÃO DE EMBARCAÇÕES " + aliasModoDeJogo() + "\n");
+
         exibeTabuleiro(tabuleiro);
         legendaTabuleiro();
-        
-        //menuSetarMunicaoPQQD(...)
 
+        //menuSetarMunicaoPQQD(...)
         // ESSE FOR TEM QUE SER DESACOPLADO!
-        for (int i = 0; i < QtdEmbarcacoes.getQtdSubmarino(); i++)
-        {
+        for (int i = 0; i < QtdEmbarcacoes.getQtdSubmarino(); i++) {
             Posicao coordenada = menuDistribuirEmbarcacoes(i, "submarino");
-            tabuleiro.setElemento(new Submarino(tabuleiro.getElemento(coordenada)) ,coordenada);
+            tabuleiro.setElemento(new Submarino(tabuleiro.getElemento(coordenada)), coordenada);
         }
-        
-        System.out.println("\nTabuleiro do jogador "+numJogador+" com embarcações escondidas:\n");
+
+        System.out.println("\nTabuleiro do jogador " + numJogador + " com embarcações escondidas:\n");
         exibeTabuleiroFiltrado(tabuleiro);
         //System.out.println("Tabuleiro a mostra:");
         //exibeTabuleiro(tabuleiro);
         legendaTabuleiro();
     }
-        
-    private static String aliasModoDeJogo()
-    {
+
+    private static String aliasModoDeJogo() {
         String alias = null;
         switch (Jogo.getModoDeJogo().getClass().getSimpleName()) {
             case "ModoTradicional":
@@ -86,13 +83,21 @@ public class BattleshipGameUI {
         }
         return alias;
     }
+
+   // private static menuSetarMunicaoPQQD();
     
-//    private static menuSetarMunicaoPQQD()
-    
-    private static Posicao menuDistribuirEmbarcacoes(int i, String tipoEmbarcacao) throws BattleshipException {
-        System.out.print("\nDigite a linha que queres colocar o "+ (i+1) +" "+ tipoEmbarcacao + ": ");
+    public static void tipoBomba() throws BattleshipMenuException{
+        
+        System.out.print("\nDigite a linha que deseja atacar");
         int x = BattleshipHelper.lerOpcao();
-        System.out.print("Digite a coluna que queres colocar o "+ (i+1) +" "+ tipoEmbarcacao + ": ");
+        System.out.print("Digite a coluna que deseja atacar");
+        int y = BattleshipHelper.lerOpcao();
+    }
+
+    private static Posicao menuDistribuirEmbarcacoes(int i, String tipoEmbarcacao) throws BattleshipException {
+        System.out.print("\nDigite a linha que queres colocar o " + (i + 1) + " " + tipoEmbarcacao + ": ");
+        int x = BattleshipHelper.lerOpcao();
+        System.out.print("Digite a coluna que queres colocar o " + (i + 1) + " " + tipoEmbarcacao + ": ");
         int y = BattleshipHelper.lerOpcao();
         return new Posicao(x, y);
     }
