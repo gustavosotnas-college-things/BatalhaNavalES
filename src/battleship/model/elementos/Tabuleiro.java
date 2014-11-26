@@ -1,6 +1,6 @@
 package battleship.model.elementos;
 
-import battleship.model.Posicao;
+import battleship.controller.Posicao;
 
 public class Tabuleiro {
     

@@ -4,8 +4,8 @@ import battleship.controller.BattleshipException;
 import battleship.controller.BattleshipMenuException;
 import battleship.controller.BattleshipHelper;
 import battleship.model.Jogo;
-import battleship.model.Posicao;
-import battleship.model.QtdEmbarcacoes;
+import battleship.controller.Posicao;
+import battleship.controller.QtdEmbarcacoes;
 import battleship.model.elementos.*;
 import battleship.model.elementos.embarcacoes.*;
 
@@ -57,14 +57,10 @@ public class BattleshipGameUI {
         exibeTabuleiro(tabuleiro);
         legendaTabuleiro();
         
-        //menuSetarMunicaoPQQD(...)
+        
 
         // ESSE FOR TEM QUE SER DESACOPLADO!
-        for (int i = 0; i < QtdEmbarcacoes.getQtdSubmarino(); i++)
-        {
-            Posicao coordenada = menuDistribuirEmbarcacoes(i, "submarino");
-            tabuleiro.setElemento(new Submarino(tabuleiro.getElemento(coordenada)) ,coordenada);
-        }
+
         
         System.out.println("\nTabuleiro do jogador "+numJogador+" com embarcações escondidas:\n");
         exibeTabuleiroFiltrado(tabuleiro);
@@ -87,9 +83,17 @@ public class BattleshipGameUI {
         return alias;
     }
     
-//    private static menuSetarMunicaoPQQD()
+    public static int[] menuSetarMunicaoPQQD() throws BattleshipMenuException { //é vetor só pra retornar duas variaveis pro ModoPQQD
+        int[] result = new int[2];
+        System.out.print("\nQuantas bombas sinalizadoras?: ");
+        result[0] = BattleshipHelper.lerOpcao();
+        System.out.print("Quantas bombas explosivas?: ");
+        result[1] = BattleshipHelper.lerOpcao();
+        
+        return result;
+    }
     
-    private static Posicao menuDistribuirEmbarcacoes(int i, String tipoEmbarcacao) throws BattleshipException {
+    public static Posicao menuDistribuirEmbarcacoes(int i, String tipoEmbarcacao) throws BattleshipException {
         System.out.print("\nDigite a linha que queres colocar o "+ (i+1) +" "+ tipoEmbarcacao + ": ");
         int x = BattleshipHelper.lerOpcao();
         System.out.print("Digite a coluna que queres colocar o "+ (i+1) +" "+ tipoEmbarcacao + ": ");

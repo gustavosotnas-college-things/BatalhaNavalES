@@ -4,7 +4,7 @@ import battleship.model.elementos.Celula;
 
 public class ModoTradicional implements ModoDeJogo{
 
-    public void setMunicao(int qtdBombasSinalizadoras, int qtdBombasExplosivas) 
+    public void setMunicaoInicial(int qtdBombasSinalizadoras, int qtdBombasExplosivas) 
     {
         //faça nada
     }

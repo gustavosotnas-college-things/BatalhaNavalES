@@ -1,9 +1,10 @@
 /*
  * Classe que serve apenas para armazenar "x" e "y" do Tabuleiro ("Struct")
  */
-package battleship.model;
+package battleship.controller;
 
 import battleship.controller.BattleshipGameException;
+import battleship.model.Jogo;
 
 public class Posicao {
     private final int x;
