@@ -3,9 +3,9 @@ package battleship.model.atributosDeJogo;
 import battleship.model.elementos.Celula;
 
 public class ModoTradicional implements ModoDeJogo{
-
-    public void setMunicaoInicial(int qtdBombasSinalizadoras, int qtdBombasExplosivas) 
-    {
+    
+    @Override
+    public void setMunicaoInicial() {
         //faça nada
     }
 

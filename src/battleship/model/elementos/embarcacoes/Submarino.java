@@ -17,6 +17,7 @@ public class Submarino extends Embarcacao{
         return tabuleiro.whoami() + "S";
     }
 
+    @Override
     public String getNome() {
         return nome;
     }
