@@ -114,25 +114,27 @@ public class BattleshipMenuUI {
 
         return distribuicao;
     }
-    
-    public static void MenuTipoBomba(){
-        
+
+    public static int MenuTipoBomba() {
+
         BattleshipHelper.clearScreen(); //"limpa a tela"
-        
+        int x = 0;
         menuHeaderBattleship();
         System.out.println("Escolha um dos tipos de bombas: ");
         System.out.println("1. Bomba Explodia");
         System.out.println("2. Bomba Sinalizadora");
         System.out.println("0 - Sair\n");
-            System.out.print("\nOpção: ");
-            try {
-               BattleshipGameUI.tipoBomba(); //lê a entrada do usuário (teclado)
-                setFinished(true);
-            } catch (BattleshipMenuException bmex) //esse catch é para exceptions relacionados a erros por parte do usuário, apenas volta ao menu
-            {
-                System.err.println(bmex.getMessage());
-                BattleshipHelper.sleep(1); //pausa de 1 segundo
-            }
+        System.out.print("\nOpção: ");
+        try {
+            
+            x = BattleshipHelper.lerOpcao(); //lê a entrada do usuário (teclado)
+            setFinished(true);
+        } catch (BattleshipMenuException bmex) //esse catch é para exceptions relacionados a erros por parte do usuário, apenas volta ao menu
+        {
+            System.err.println(bmex.getMessage());
+            BattleshipHelper.sleep(1); //pausa de 1 segundo
+        }
+        return x;
     }
 
     public static boolean finalizarPrograma() {

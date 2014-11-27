@@ -10,7 +10,7 @@ public class ModoTradicional implements ModoDeJogo{
         //faça nada
     }
 
-    public void comecarTurno(Tabuleiro tabuleiro1, Tabuleiro tabuleiro2) {
+    public void comecarTurno(Tabuleiro tabuleiro, int quantidade) {
         
     }
 

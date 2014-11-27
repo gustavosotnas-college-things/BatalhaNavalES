@@ -6,6 +6,7 @@ package battleship.model;
 import battleship.controller.BattleshipGameException;
 
 public class Posicao {
+
     private final int x;
     private final int y;
     

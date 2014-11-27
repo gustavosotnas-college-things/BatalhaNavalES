@@ -1,6 +1,9 @@
 package battleship.model.atributosDeJogo;
 
+import battleship.controller.BattleshipException;
 import battleship.model.Jogo;
+import battleship.model.Posicao;
+import battleship.model.QtdEmbarcacoes;
 import battleship.model.elementos.*;
 import battleship.view.*;
 
@@ -15,12 +18,16 @@ public class ModoPQQD implements ModoDeJogo {
         this.qtdBombasExplosivas = qtdBombasExplosivas;
     }
 
-    public void comecarTurno(Tabuleiro tabuleiro1, Tabuleiro tabuleiro2) {
+    public void comecarTurno(Tabuleiro tabuleiro, int quantidade) throws BattleshipException {
 
-       /* while (embarcacao == 0) {
+        while (quantidade == 0) {
             System.out.println("Vez do jogador 1...");
-            BattleshipGameUI.exibeTabuleiro(tabuleiro2);
-            BattleshipMenuUI.MenuTipoBomba();
-        }*/
+            BattleshipGameUI.exibeTabuleiro(tabuleiro);
+            BattleshipMenuUI.MenuTipoBomba(); //pede para escolher qual tipo de bomba
+            Posicao posicao = BattleshipGameUI.menuDetonaBomba();
+            // funcao de ataque a celula;
+            // função que verifica se foi atingido;
+        }
     }
+
 }

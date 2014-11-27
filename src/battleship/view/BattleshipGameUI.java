@@ -1,6 +1,7 @@
 package battleship.view;
 
 import battleship.controller.BattleshipException;
+import battleship.controller.BattleshipGameException;
 import battleship.controller.BattleshipMenuException;
 import battleship.controller.BattleshipHelper;
 import battleship.model.Jogo;
@@ -85,19 +86,18 @@ public class BattleshipGameUI {
     }
 
    // private static menuSetarMunicaoPQQD();
-    
-    public static void tipoBomba() throws BattleshipMenuException{
-        
-        System.out.print("\nDigite a linha que deseja atacar");
-        int x = BattleshipHelper.lerOpcao();
-        System.out.print("Digite a coluna que deseja atacar");
-        int y = BattleshipHelper.lerOpcao();
-    }
-
     private static Posicao menuDistribuirEmbarcacoes(int i, String tipoEmbarcacao) throws BattleshipException {
         System.out.print("\nDigite a linha que queres colocar o " + (i + 1) + " " + tipoEmbarcacao + ": ");
         int x = BattleshipHelper.lerOpcao();
         System.out.print("Digite a coluna que queres colocar o " + (i + 1) + " " + tipoEmbarcacao + ": ");
+        int y = BattleshipHelper.lerOpcao();
+        return new Posicao(x, y);
+    }
+
+    public static Posicao menuDetonaBomba() throws BattleshipException {
+        System.out.println("\nDigite a linha da embarcação alvo :");
+        int x = BattleshipHelper.lerOpcao();
+        System.out.println("Digite a coluna da embarcação alvo :");
         int y = BattleshipHelper.lerOpcao();
         return new Posicao(x, y);
     }

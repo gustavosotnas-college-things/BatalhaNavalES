@@ -16,7 +16,7 @@ public class Jogo {
         return tabuleiroP1;
     }
     private Tabuleiro tabuleiroP2; //tabuleiro do Jogador 2
-    
+
     public static ModoDeJogo getModoDeJogo() {
         return modoDeJogo;
     }
