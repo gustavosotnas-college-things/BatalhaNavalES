@@ -36,8 +36,7 @@ public class Tabuleiro {
 
     public void setElemento(Celula conteudo,Posicao coord) throws BattleshipGameException {
         if(conteudo.getNome().equals(tabuleiro[coord.getX()][coord.getY()].getNome())) //se já tem tal elemento decorado anteriormente em dada posicao
-        {    System.out.println(conteudo.getClass().getSimpleName());
-            System.out.println(tabuleiro[coord.getX()][coord.getY()].getClass().getSimpleName());
+        {
             throw new BattleshipGameException("Nesta posição já existe um " + conteudo.getNome());
         }else
             tabuleiro[coord.getX()][coord.getY()] = conteudo;
