@@ -69,7 +69,6 @@ public class BattleshipHelper {
         return distribuicao;
     }
     
-    
     public static int lerOpcao() throws BattleshipMenuException {
         Scanner leitor = new Scanner(System.in);
         int opcao;
@@ -99,5 +98,10 @@ public class BattleshipHelper {
         if (param == null) {
             throw new BattleshipMenuException("Jogo não foi iniciado");
         }
+    }
+    
+    public static void DetonaBomba(){
+        //verifica o que tem antes da decoração aqua
+        // se tiver embarcação,logo, submarino --;
     }
 }

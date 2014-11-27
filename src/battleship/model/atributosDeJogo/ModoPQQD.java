@@ -27,6 +27,9 @@ public class ModoPQQD implements ModoDeJogo {
             Posicao posicao = BattleshipGameUI.menuDetonaBomba();
             // funcao de ataque a celula;
             // função que verifica se foi atingido;
+            /*if(verifica == false)
+                return quantidade--;
+            */
         }
     }
 
