@@ -4,6 +4,8 @@ import battleship.controller.BattleshipException;
 import battleship.controller.BattleshipHelper;
 import battleship.controller.BattleshipMenuException;
 import battleship.controller.Posicao;
+import battleship.model.elementos.BombaExplosiva;
+import battleship.model.elementos.BombaSinalizadora;
 import battleship.model.elementos.Celula;
 import battleship.model.elementos.Tabuleiro;
 import battleship.view.BattleshipGameUI;
@@ -29,11 +31,18 @@ public class ModoPQQD implements ModoDeJogo {
     public void comecarTurno(Tabuleiro tabuleiro, int quantidade) throws BattleshipException {
 
         while (quantidade == 0) {
-            System.out.println("Vez do jogador 1...");
+            //System.out.println("Vez do jogador 1...");
             BattleshipGameUI.exibeTabuleiro(tabuleiro);
-            BattleshipMenuUI.MenuTipoBomba(); //pede para escolher qual tipo de bomba
-            BattleshipGameUI.menuDetonaBomba();
-            
+            int x = BattleshipMenuUI.MenuTipoBomba(); //pede para escolher qual tipo de bomba
+            Posicao posicao = BattleshipGameUI.menuDetonaBomba();
+            if(x == 1){
+                tabuleiro.setElemento(new BombaExplosiva(tabuleiro.getElemento(posicao)), posicao);
+                BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
+            }
+            if(x == 2){
+                tabuleiro.setElemento(new BombaSinalizadora(tabuleiro.getElemento(posicao)), posicao);
+                BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
+            }
         }
     }
 

@@ -121,7 +121,7 @@ public class BattleshipMenuUI {
         int x = 0;
         menuHeaderBattleship();
         System.out.println("Escolha um dos tipos de bombas: ");
-        System.out.println("1. Bomba Explodia");
+        System.out.println("1. Bomba Explodir");
         System.out.println("2. Bomba Sinalizadora");
         System.out.println("0 - Sair\n");
         System.out.print("\nOpção: ");

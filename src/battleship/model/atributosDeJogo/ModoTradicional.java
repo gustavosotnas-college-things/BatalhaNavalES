@@ -2,6 +2,7 @@ package battleship.model.atributosDeJogo;
 
 import battleship.controller.BattleshipException;
 import battleship.controller.Posicao;
+import battleship.model.elementos.BombaExplosiva;
 import battleship.model.elementos.Tabuleiro;
 import battleship.view.BattleshipGameUI;
 
@@ -18,10 +19,8 @@ public class ModoTradicional implements ModoDeJogo {
             System.out.println("Vez do jogador 1...");
             BattleshipGameUI.exibeTabuleiro(tabuleiro);
             Posicao posicao = BattleshipGameUI.menuDetonaBomba();
-            // funcao de ataque a celula;
-            // função que verifica se foi atingido;
-            //if(verifica ==  true){
-            //}
+            tabuleiro.setElemento(new BombaExplosiva(tabuleiro.getElemento(posicao)), posicao);
+            BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
         }
     }
 
