@@ -12,7 +12,7 @@ public class ModoDistribAuto implements ModoDeDistribuicao{
     @Override
     public void distribuirEmbarcacoes(Tabuleiro tabuleiro) throws BattleshipException {
         Random gerador = new Random();
-        for (int i = 0; i < QtdEmbarcacoes.getQtdSubmarino(); i++)
+        for (int i = 0; i < tabuleiro.getQtdEmbarcacoes().getQtdSubmarino(); i++)
         {
             Posicao coordenada = new Posicao(gerador.nextInt(tabuleiro.getTamanho()), gerador.nextInt(tabuleiro.getTamanho()));
             tabuleiro.setElemento(new Submarino(tabuleiro.getElemento(coordenada)) ,coordenada);

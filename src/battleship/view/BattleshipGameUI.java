@@ -18,7 +18,7 @@ public class BattleshipGameUI {
         }
     }
 
-    public static void exibeTabuleiroFiltrado(Tabuleiro tabuleiro) throws BattleshipGameException {
+    public static boolean exibeTabuleiroFiltrado(Tabuleiro tabuleiro) throws BattleshipGameException {
 
         boolean aconteceuAlgo = false;
         String descricaoAcontecimento = null;
@@ -29,8 +29,9 @@ public class BattleshipGameUI {
 
                 posAtual = new Posicao(i, j);
 
-                /*1º IF*/ if ((tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1).contains("*"))
+                if ((tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1).contains("*"))
                         && (!tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 2).contains("~"))) {
+
                     //A bomba explodiu uma embarcação
                     System.out.print(tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1) + "\t"); //imprime somente o último caractere da String
 
@@ -40,9 +41,9 @@ public class BattleshipGameUI {
                         descricaoAcontecimento = "A bomba explodiu um " + aliasNomeEmbarcacao(tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 2));
                         BattleshipLogger.adicionaLog(posAtual, descricaoAcontecimento);
                     }
-                    posAtual = null; //pra desalocar memória (o Garbage Collector poder coletar ele)
-                } /*2º IF*/ else if ((tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1).contains("*"))
+                } else if ((tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1).contains("*"))
                         && (tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 2).contains("~"))) {
+
                     //A bomba errou o alvo
                     System.out.print(tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1) + "\t"); //imprime somente o último caractere da String
 
@@ -52,9 +53,9 @@ public class BattleshipGameUI {
                         descricaoAcontecimento = "A bomba errou o alvo! Tente novamente na próxima vez.";
                         BattleshipLogger.adicionaLog(posAtual, descricaoAcontecimento);
                     }
-                    posAtual = null; //pra desalocar memória (o Garbage Collector poder coletar ele)
-                } /*3º IF*/ else if ((tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1).contains("!"))
+                } else if ((tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1).contains("!"))
                         && (!tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 2).contains("~"))) {
+
                     //A bomba encontrou um navio
                     System.out.print(tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1) + "\t"); //imprime somente o último caractere da String
 
@@ -64,34 +65,37 @@ public class BattleshipGameUI {
                         descricaoAcontecimento = "A bomba sinalizadora encontrou um " + aliasNomeEmbarcacao(tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 2));
                         BattleshipLogger.adicionaLog(posAtual, descricaoAcontecimento);
                     }
-                    posAtual = null; //pra desalocar memória (o Garbage Collector poder coletar ele)
-                } /*4º IF*/ else if ((tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1).contains("!"))
+                } else if ((tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1).contains("!"))
                         && (tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 2).contains("~"))) {
+
                     //A bomba sinalizadora errou o alvo
                     System.out.print(tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1) + "\t"); //imprime somente o último caractere da String
-
                     if (BattleshipLogger.consultaPosicaoLog(posAtual)) //verifica se aquela posição já foi escolhida antes (já foi adicionado no log)
                     {
                         aconteceuAlgo = true;
                         descricaoAcontecimento = "A bomba sinalizadora encontrou nada nessa posição. Tente novamente na próxima vez.";
                         BattleshipLogger.adicionaLog(posAtual, descricaoAcontecimento);
                     }
-                    posAtual = null; //pra desalocar memória (o Garbage Collector poder coletar ele)
-                } /*5º IF*/ else if ((!tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1).contains("~"))
+                } else if ((!tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1).contains("~"))
                         && (tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 2).contains("~"))) {
+
                     //Nessa posição existe um navio e não foi explodido
                     System.out.print("[ ]\t"); //imprime "[ ]" = névoa (para esconder)
-                } /*ELSE*/ else //Naquela posição tem só água
+                } else //Naquela posição tem só água 
                 {
                     System.out.print("[ ]\t"); //imprime "[ ]" = névoa (para esconder)
                 }
+                posAtual = null; //pra desalocar memória (o Garbage Collector poder coletar ele)
             }
             System.out.println("\n");
         }
         if (aconteceuAlgo) {
             System.out.println(descricaoAcontecimento); //imprime o que aconteceu por último no tabuleiro
+        }
+        else {
             aconteceuAlgo = false;
         }
+        return aconteceuAlgo;
     }
 
     public static void legendaTabuleiro() {
@@ -182,9 +186,9 @@ public class BattleshipGameUI {
     }
 
     public static Posicao menuDetonaBomba() throws BattleshipException {
-        System.out.println("\nDigite a linha da embarcação alvo :");
+        System.out.println("\nDigite a linha da embarcação alvo: ");
         int x = BattleshipHelper.lerOpcao();
-        System.out.println("Digite a coluna da embarcação alvo :");
+        System.out.println("Digite a coluna da embarcação alvo: ");
         int y = BattleshipHelper.lerOpcao();
         return new Posicao(x, y);
     }

@@ -41,7 +41,7 @@ public class Jogo {
     public void comecarJogo() throws BattleshipException {
         inicializarTabuleiros();
         BattleshipGameUI.menuFazerDistribuicaoTabuleiro(1, tabuleiroP1, modoDeJogo, modoDeDistribuicao); //Jogador 1
-        //BattleshipGameUI.menuFazerDistribuicaoTabuleiro(2, tabuleiroP2); //Jogador 2
+        BattleshipGameUI.menuFazerDistribuicaoTabuleiro(2, tabuleiroP2, modoDeJogo, modoDeDistribuicao); //Jogador 2
     }
 
     private void inicializarTabuleiros() {

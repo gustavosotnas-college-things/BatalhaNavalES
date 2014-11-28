@@ -5,7 +5,7 @@ import battleship.model.elementos.Tabuleiro;
 
 public interface ModoDeJogo {
 
-    public void setMunicaoInicial(/*int qtdBombasSinalizadoras, int qtdBombasExplosivas*/);
+    public void setMunicaoInicial();
 
     public void comecarTurno(Tabuleiro tabuleiro, int quantidade) throws BattleshipException;
 }

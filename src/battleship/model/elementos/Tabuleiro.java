@@ -2,11 +2,13 @@ package battleship.model.elementos;
 
 import battleship.controller.BattleshipGameException;
 import battleship.controller.Posicao;
+import battleship.controller.QtdEmbarcacoes;
 
 public class Tabuleiro {
     
     private Celula[][] tabuleiro;
     private final int numeroJogador;
+    protected QtdEmbarcacoes qtdEmbarcacoes;
     private final int tamanho;
     
     public Tabuleiro(int player, int tamanho){
@@ -48,5 +50,9 @@ public class Tabuleiro {
 
     public int getTamanho() {
         return tamanho;
+    }
+
+    public QtdEmbarcacoes getQtdEmbarcacoes() {
+        return qtdEmbarcacoes;
     }
 }

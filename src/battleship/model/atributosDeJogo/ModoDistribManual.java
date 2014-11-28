@@ -11,7 +11,7 @@ public class ModoDistribManual implements ModoDeDistribuicao{
 
     @Override
     public void distribuirEmbarcacoes(Tabuleiro tabuleiro) throws BattleshipException {
-        for (int i = 0; i < QtdEmbarcacoes.getQtdSubmarino(); i++)
+        for (int i = 0; i < tabuleiro.getQtdEmbarcacoes().getQtdSubmarino(); i++)
         {
             Posicao coordenada = BattleshipGameUI.menuDistribuirEmbarcacoes(i, "submarino");
             tabuleiro.setElemento(new Submarino(tabuleiro.getElemento(coordenada)) ,coordenada);
