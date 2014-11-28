@@ -1,6 +1,7 @@
 package battleship.model.elementos;
 
-import battleship.model.Posicao;
+import battleship.controller.BattleshipGameException;
+import battleship.controller.Posicao;
 
 public class Tabuleiro {
     
@@ -33,8 +34,12 @@ public class Tabuleiro {
         return tabuleiro[coord.getX()][coord.getY()];
     }
 
-    public void setElemento(Celula conteudo,Posicao coord) {
-        tabuleiro[coord.getX()][coord.getY()] = conteudo;
+    public void setElemento(Celula conteudo,Posicao coord) throws BattleshipGameException {
+        if(conteudo.getNome().equals(tabuleiro[coord.getX()][coord.getY()].getNome())) //se já tem tal elemento decorado anteriormente em dada posicao
+        {
+            throw new BattleshipGameException("Nesta posição já existe um " + conteudo.getNome());
+        }else
+            tabuleiro[coord.getX()][coord.getY()] = conteudo;
     }
 
     public int getNumeroJogador() {

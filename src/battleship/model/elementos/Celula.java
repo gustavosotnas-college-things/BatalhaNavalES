@@ -7,4 +7,6 @@ public abstract class Celula {
     public String whoami() { //getter
         return whoami;
     }
+    
+    public abstract String getNome();
 }

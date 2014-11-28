@@ -11,4 +11,9 @@ public class Agua extends DecoradorElemento{
     public String whoami() {
         return tabuleiro.whoami() + "~";
     }
+
+    @Override
+    public String getNome() {
+        return "Água";
+    }
 }

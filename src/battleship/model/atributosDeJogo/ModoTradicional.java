@@ -7,9 +7,10 @@ import battleship.model.elementos.Tabuleiro;
 import battleship.view.BattleshipGameUI;
 import battleship.view.BattleshipMenuUI;
 
-public class ModoTradicional implements ModoDeJogo {
-
-    public void setMunicao(int qtdBombasSinalizadoras, int qtdBombasExplosivas) {
+public class ModoTradicional implements ModoDeJogo{
+    
+    @Override
+    public void setMunicaoInicial() {
         //faça nada
     }
 

@@ -1,7 +1,7 @@
 /*
  * Classe que serve apenas para conter as variáveis do numero de navios que tem que ter no jogo ("Struct")
  */
-package battleship.model;
+package battleship.controller;
 
 public abstract class QtdEmbarcacoes {
     

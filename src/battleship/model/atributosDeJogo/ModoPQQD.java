@@ -1,11 +1,9 @@
 package battleship.model.atributosDeJogo;
 
-import battleship.controller.BattleshipException;
-import battleship.model.Jogo;
-import battleship.model.Posicao;
-import battleship.model.QtdEmbarcacoes;
-import battleship.model.elementos.*;
-import battleship.view.*;
+import battleship.controller.BattleshipHelper;
+import battleship.controller.BattleshipMenuException;
+import battleship.model.elementos.Celula;
+import battleship.view.BattleshipGameUI;
 
 public class ModoPQQD implements ModoDeJogo {
 
@@ -13,9 +11,16 @@ public class ModoPQQD implements ModoDeJogo {
     private int qtdBombasExplosivas;
 
     @Override
-    public void setMunicao(int qtdBombasSinalizadoras, int qtdBombasExplosivas) {
-        this.qtdBombasSinalizadoras = qtdBombasSinalizadoras;
-        this.qtdBombasExplosivas = qtdBombasExplosivas;
+    public void setMunicaoInicial(/*int qtdBombasSinalizadoras, int qtdBombasExplosivas*/) {
+        int[] bomb = null;
+        try {
+            bomb = BattleshipGameUI.menuSetarMunicaoPQQD();
+        } catch (BattleshipMenuException bmex) {
+            System.err.println(bmex.getMessage());
+            BattleshipHelper.sleep(1); //pausa de 1 segundo
+        }
+        this.qtdBombasSinalizadoras = bomb[0];
+        this.qtdBombasExplosivas = bomb[1];
     }
 
     public void comecarTurno(Tabuleiro tabuleiro, int quantidade) throws BattleshipException {
@@ -33,4 +38,19 @@ public class ModoPQQD implements ModoDeJogo {
         }
     }
 
+    public int getQtdBombasSinalizadoras() {
+        return qtdBombasSinalizadoras;
+    }
+
+    public void setQtdBombasSinalizadoras(int qtdBombasSinalizadoras) {
+        this.qtdBombasSinalizadoras = qtdBombasSinalizadoras;
+    }
+
+    public int getQtdBombasExplosivas() {
+        return qtdBombasExplosivas;
+    }
+
+    public void setQtdBombasExplosivas(int qtdBombasExplosivas) {
+        this.qtdBombasExplosivas = qtdBombasExplosivas;
+    }
 }

@@ -10,4 +10,9 @@ public class BombaExplosiva extends Fogo {
     public String whoami() {
         return tabuleiro.whoami() + "*";
     }
+
+    @Override
+    public String getNome() {
+        return "Bomba Explosiva";
+    }
 }
