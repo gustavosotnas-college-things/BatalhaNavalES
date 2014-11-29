@@ -1,10 +1,15 @@
 package battleship.model.atributosDeJogo;
 
 import battleship.controller.BattleshipException;
+import battleship.controller.BattleshipHelper;
 import battleship.controller.Posicao;
+import battleship.model.Jogo;
 import battleship.model.elementos.BombaExplosiva;
+import battleship.model.elementos.Celula;
+import battleship.model.elementos.Fogo;
 import battleship.model.elementos.Tabuleiro;
 import battleship.view.BattleshipGameUI;
+import battleship.view.BattleshipMenuUI;
 
 public class ModoTradicional implements ModoDeJogo {
 
@@ -13,13 +18,39 @@ public class ModoTradicional implements ModoDeJogo {
         //faça nada
     }
 
-    public void comecarTurno(Tabuleiro tabuleiro) throws BattleshipException {
+    public void comecarTurno(Tabuleiro tabuleiro) {
 
-            //System.out.println("Vez do jogador 1...");
-            BattleshipGameUI.exibeTabuleiro(tabuleiro);
-            Posicao posicao = BattleshipGameUI.menuDetonaBomba();
-            tabuleiro.setElemento(new BombaExplosiva(tabuleiro.getElemento(posicao)), posicao);
-            BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
+        boolean acontecerAlgo = true;
+
+        while (acontecerAlgo) {
+
+            try {
+                    BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
+
+                    Posicao posicao = BattleshipGameUI.menuDetonaBomba(); //Pede a linha e coluna do alvo no tabuleiro
+                    Celula alvo = tabuleiro.getElemento(posicao);
+
+                    tabuleiro.setElemento(new BombaExplosiva(alvo), posicao);
+                    acontecerAlgo = BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
+                    verificaGameOver(tabuleiro);
+
+            } catch (BattleshipException bex) {
+                System.err.println(bex.getMessage());
+                BattleshipHelper.sleep(1); //pausa de 1 segundo
+            }
+        }
+    }
+
+    public void verificaGameOver(Tabuleiro tabuleiro){
+        
+        if((tabuleiro.getQtdEmbarcacoes().getQtdSubmarino() == 0) || 
+             (tabuleiro.getQtdEmbarcacoes().getQtdNavioTamanho2() == 0) || 
+             (tabuleiro.getQtdEmbarcacoes().getQtdNavioTamanho3() == 0) || 
+             (tabuleiro.getQtdEmbarcacoes().getQtdNavioTamanho4() == 0) || 
+             (tabuleiro.getQtdEmbarcacoes().getQtdPortaAvioes() == 0)) {
+
+            Jogo.setGameOver(true);
+        }
     }
 
 }

@@ -4,6 +4,11 @@ package battleship.controller;
 
 import battleship.view.BattleshipMenuUI;
 import battleship.model.atributosDeJogo.*;
+import battleship.model.elementos.BombaExplosiva;
+import battleship.model.elementos.BombaSinalizadora;
+import battleship.model.elementos.Celula;
+import battleship.model.elementos.Fogo;
+import battleship.model.elementos.Tabuleiro;
 import java.util.Scanner;
 
 public class BattleshipHelper {
@@ -69,6 +74,33 @@ public class BattleshipHelper {
         return distribuicao;
     }
     
+    public static Fogo processarMenuTipoBombaPQQD(int opcao, Celula alvo, ModoPQQD pqqd) throws BattleshipException {
+
+        Fogo retorno = null;
+        switch (opcao) {
+            case 1:
+                if (!(alvo.getNome().equals("Bomba Explosiva"))) {
+                    retorno = new BombaExplosiva(alvo);
+                    pqqd.setQtdBombasExplosivas(pqqd.getQtdBombasExplosivas()-1);
+                }
+                else
+                    throw new BattleshipGameException ("Opção inválida. Já existe uma " +alvo.getNome()+ " nesta posição.");
+                break;
+            case 2:
+                if (!((alvo.getNome().equals("Bomba Sinalizadora")) || (alvo.getNome().equals("Bomba Explosiva")))) {
+                    
+                    retorno = new BombaSinalizadora(alvo);
+                    pqqd.setQtdBombasSinalizadoras(pqqd.getQtdBombasSinalizadoras()-1);
+                }
+                else
+                    throw new BattleshipGameException ("Opção inválida. Já existe uma " +alvo.getNome()+ " nesta posição.");
+                break;
+            default:
+                throw new BattleshipMenuException("Opção inválida. Escolha apenas uma das opções listadas.");
+        }
+        return retorno;
+    }
+
     public static int lerOpcao() throws BattleshipMenuException {
         Scanner leitor = new Scanner(System.in);
         int opcao;
@@ -107,11 +139,11 @@ public class BattleshipHelper {
         }
     }
     
-/*    public static void DetonaBomba(){
+    public static void detonaBomba(){
         //verifica o que tem antes da decoração aqua
         // se tiver embarcação,logo, submarino --;
     }
-*/
+
     public static String processarMenuDistribuicaoOrientacao(int opcao) throws BattleshipGameException {
         String retorno = null;
         switch (opcao){

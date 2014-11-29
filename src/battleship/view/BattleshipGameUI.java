@@ -215,16 +215,30 @@ public class BattleshipGameUI {
                 orientacao = BattleshipHelper.processarMenuDistribuicaoOrientacao(BattleshipHelper.lerOpcao());
             } catch (BattleshipException bgex) {
                 System.err.println(bgex.getMessage());
+                BattleshipHelper.sleep(1); //pausa de 1 segundo
             }
         }
         return orientacao;
     }
 
     public static Posicao menuDetonaBomba() throws BattleshipException {
-        System.out.println("\nDigite a linha da embarcação alvo: ");
-        int x = BattleshipHelper.lerOpcao();
-        System.out.println("Digite a coluna da embarcação alvo: ");
-        int y = BattleshipHelper.lerOpcao();
-        return new Posicao(x, y);
+        boolean finished = false;
+        Posicao posicaoEscolhida = null;
+        
+        while (!finished) {
+
+            try {
+                System.out.println("\nDigite a linha do alvo: ");
+                int x = BattleshipHelper.lerOpcao();
+                System.out.println("Digite a coluna do alvo: ");
+                int y = BattleshipHelper.lerOpcao();
+                posicaoEscolhida = new Posicao(x, y);
+                finished = true;
+            } catch (BattleshipException bgex) {
+                System.err.println(bgex.getMessage());
+                BattleshipHelper.sleep(1); //pausa de 1 segundo
+            }
+        }
+        return posicaoEscolhida;
     }
 }

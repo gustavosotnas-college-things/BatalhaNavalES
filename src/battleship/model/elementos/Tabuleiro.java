@@ -41,8 +41,30 @@ public class Tabuleiro {
         if(conteudo.getNome().equals(tabuleiro[coord.getX()][coord.getY()].getNome())) //se já tem tal elemento decorado anteriormente em dada posicao
         {
             throw new BattleshipGameException("Nesta posição já existe um " + conteudo.getNome());
-        }else
+        }else {
             tabuleiro[coord.getX()][coord.getY()] = conteudo;
+            registrarExplosao(tabuleiro[coord.getX()][coord.getY()]);
+        }
+    }
+    
+    private void registrarExplosao(Celula celula) {
+        switch(celula.whoami().substring(celula.whoami().length()-1)){
+            case "1":
+                qtdEmbarcacoes.decrementarSubmarino();
+                break;
+            case "2":
+                qtdEmbarcacoes.decrementarNavioTamanho2();
+                break;
+            case "3":
+                qtdEmbarcacoes.decrementarNavioTamanho3();
+                break;
+            case "4":
+                qtdEmbarcacoes.decrementarNavioTamanho4();
+                break;
+            case "P":
+                qtdEmbarcacoes.decrementarPortaAvioes();
+                break;
+        }
     }
 
     public int getNumeroJogador() {

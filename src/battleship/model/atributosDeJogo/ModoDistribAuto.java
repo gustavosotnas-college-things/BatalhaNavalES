@@ -5,6 +5,9 @@ import battleship.controller.BattleshipHelper;
 import battleship.controller.Posicao;
 import battleship.model.elementos.Tabuleiro;
 import battleship.model.elementos.embarcacoes.NavioTamanho2;
+import battleship.model.elementos.embarcacoes.NavioTamanho3;
+import battleship.model.elementos.embarcacoes.NavioTamanho4;
+import battleship.model.elementos.embarcacoes.PortaAvioes;
 import battleship.model.elementos.embarcacoes.Submarino;
 import java.util.Random;
 
@@ -45,7 +48,7 @@ public class ModoDistribAuto implements ModoDeDistribuicao {
         //a implementar 
         boolean finished;
 
-        for (int i = 0; i < tabuleiro.getQtdEmbarcacoes().getQtdSubmarino(); i++) {
+        for (int i = 0; i < tabuleiro.getQtdEmbarcacoes().getQtdNavioTamanho2(); i++) {
 
             finished = false;
             while (!finished) {
@@ -71,14 +74,98 @@ public class ModoDistribAuto implements ModoDeDistribuicao {
 
     private void distribuirNavioTamanho3(Tabuleiro tabuleiro) {
         //a implementar
+        boolean finished;
+
+        for (int i = 0; i < tabuleiro.getQtdEmbarcacoes().getQtdNavioTamanho3(); i++) {
+
+            finished = false;
+            while (!finished) {
+
+                try {
+                    Posicao coordenada = new Posicao(gerador.nextInt(tabuleiro.getTamanho()), gerador.nextInt(tabuleiro.getTamanho()));
+                    String orientacao = BattleshipHelper.processarMenuDistribuicaoOrientacao(gerador.nextInt(3));
+                    tabuleiro.setElemento(new NavioTamanho3(tabuleiro.getElemento(coordenada)) ,coordenada);
+                    
+                    if("horizontal".equals(orientacao)){
+                        tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX(), coordenada.getY()+1));
+                        tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX(), coordenada.getY()+2));
+                    }
+                    else{
+                        tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX()+1, coordenada.getY()));
+                        tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX()+2, coordenada.getY()));
+                    }
+                    finished = true;
+                } catch (BattleshipGameException bgex) {
+                    // faça nada, o while vai fazer gerar outra Posicao
+                }
+            }
+        }
     }
 
     private void distribuirNavioTamanho4(Tabuleiro tabuleiro) {
         //a implementar
+        boolean finished;
+
+        for (int i = 0; i < tabuleiro.getQtdEmbarcacoes().getQtdNavioTamanho4(); i++) {
+
+            finished = false;
+            while (!finished) {
+
+                try {
+                    Posicao coordenada = new Posicao(gerador.nextInt(tabuleiro.getTamanho()), gerador.nextInt(tabuleiro.getTamanho()));
+                    String orientacao = BattleshipHelper.processarMenuDistribuicaoOrientacao(gerador.nextInt(3));
+                    tabuleiro.setElemento(new NavioTamanho4(tabuleiro.getElemento(coordenada)) ,coordenada);
+                    
+                    if("horizontal".equals(orientacao)){
+                        tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX(), coordenada.getY()+1));
+                        tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX(), coordenada.getY()+2));
+                        tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX(), coordenada.getY()+3));
+                    }
+                    else{
+                        tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX()+1, coordenada.getY()));
+                        tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX()+2, coordenada.getY()));
+                        tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX()+3, coordenada.getY()));
+                    }
+                    finished = true;
+                } catch (BattleshipGameException bgex) {
+                    // faça nada, o while vai fazer gerar outra Posicao
+                }
+            }
+        }
     }
 
     private void distribuirPortaAvioes(Tabuleiro tabuleiro) {
         //a implementar
+        boolean finished;
+
+        for (int i = 0; i < tabuleiro.getQtdEmbarcacoes().getQtdPortaAvioes(); i++) {
+
+            finished = false;
+            while (!finished) {
+
+                try {
+                    Posicao coordenada = new Posicao(gerador.nextInt(tabuleiro.getTamanho()), gerador.nextInt(tabuleiro.getTamanho()));
+                    String orientacao = BattleshipHelper.processarMenuDistribuicaoOrientacao(gerador.nextInt(2)+1);
+                    tabuleiro.setElemento(new PortaAvioes(tabuleiro.getElemento(coordenada)) ,coordenada);
+                    
+                    if("horizontal".equals(orientacao)){
+                        tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX(), coordenada.getY()+1));
+                        tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX(), coordenada.getY()+2));
+                        tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX()+1, coordenada.getY()+1));
+                        tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX()+2, coordenada.getY()+1));
+                    }
+                    else{
+                        tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX()+1, coordenada.getY()));
+                        tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX()+2, coordenada.getY()));
+                        tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX()+1, coordenada.getY()+1));
+                        tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX()+1, coordenada.getY()+1));
+                    }
+                    finished = true;
+                } catch (BattleshipGameException bgex) {
+                    bgex.printStackTrace(System.err);
+                }
+            }
+        }
         tabuleiro.getQtdEmbarcacoes().setQtdEmbarcacoes();
     }
 }
