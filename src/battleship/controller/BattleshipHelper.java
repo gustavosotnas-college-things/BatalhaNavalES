@@ -79,6 +79,13 @@ public class BattleshipHelper {
         }
         return opcao;
     }
+    
+    //Função para pausar o programa até o usuário apertar ENTER (forma semelhante ao "getchar" do C).
+    public static void getchar() {
+
+        System.out.print("Aperte ENTER para continuar.");
+        new Scanner(System.in).nextLine();
+    }
 
     public static void sleep(int tempoEmSegundos) {
         try {
@@ -100,8 +107,23 @@ public class BattleshipHelper {
         }
     }
     
-    public static void DetonaBomba(){
+/*    public static void DetonaBomba(){
         //verifica o que tem antes da decoração aqua
         // se tiver embarcação,logo, submarino --;
+    }
+*/
+    public static String processarMenuDistribuicaoOrientacao(int opcao) throws BattleshipGameException {
+        String retorno = null;
+        switch (opcao){
+            case 1:
+                retorno = "horizontal";
+                break;
+            case 2:
+                retorno = "vertical";
+                break;
+            default:
+                throw new BattleshipGameException("Opção inválida. Escolha apenas uma das opções listadas.");
+        }
+        return retorno;
     }
 }

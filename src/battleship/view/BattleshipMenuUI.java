@@ -37,7 +37,7 @@ public class BattleshipMenuUI {
         return novoJogo;
     }
 
-    public static ModoDeJogo menuModoJogo() throws BattleshipMenuException {
+    public static ModoDeJogo menuModoJogo() {
         BattleshipHelper.clearScreen(); //"limpa a tela"
         setFinished(false); //inicializando com false para entrar no loop
 
@@ -63,7 +63,7 @@ public class BattleshipMenuUI {
         return modo;
     }
 
-    public static DificuldadeDoJogo menuDificuldadeJogo() throws BattleshipMenuException {
+    public static DificuldadeDoJogo menuDificuldadeJogo() {
         BattleshipHelper.clearScreen(); //"limpa a tela"
         setFinished(false);
 
@@ -89,7 +89,7 @@ public class BattleshipMenuUI {
         return dificuldade;
     }
 
-    public static ModoDeDistribuicao modoDistribuicaoJogo() throws BattleshipMenuException {
+    public static ModoDeDistribuicao modoDistribuicaoJogo() {
         BattleshipHelper.clearScreen(); //"limpa a tela"
         setFinished(false);
 

@@ -4,6 +4,7 @@ import battleship.controller.BattleshipException;
 import battleship.controller.BattleshipHelper;
 import battleship.controller.BattleshipMenuException;
 import battleship.controller.Posicao;
+import battleship.model.Jogo;
 import battleship.model.elementos.BombaExplosiva;
 import battleship.model.elementos.BombaSinalizadora;
 import battleship.model.elementos.Tabuleiro;
@@ -34,24 +35,32 @@ public class ModoPQQD implements ModoDeJogo {
         }
     }
 
-    public void comecarTurno(Tabuleiro tabuleiro, int quantidade) throws BattleshipException {
+    public void comecarTurno(Tabuleiro tabuleiro) throws BattleshipException {
         boolean acontecerAlgo = true;
         while (acontecerAlgo) {
             //System.out.println("Vez do jogador 1...");
-            BattleshipGameUI.exibeTabuleiro(tabuleiro);
+            BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
             int x = BattleshipMenuUI.MenuTipoBomba(); //pede para escolher qual tipo de bomba
             Posicao posicao = BattleshipGameUI.menuDetonaBomba();
             switch (x){
                 case 1:
                     tabuleiro.setElemento(new BombaExplosiva(tabuleiro.getElemento(posicao)), posicao);
-                    acontecerAlgo = BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
                     break;
                 case 2:
                     tabuleiro.setElemento(new BombaSinalizadora(tabuleiro.getElemento(posicao)), posicao);
-                    BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
                     break;
             }
+            acontecerAlgo = BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
         }
+    }
+    
+    private static boolean verificaFaltaBomba(ModoPQQD modo){
+        
+        if(modo.getQtdBombasExplosivas() == 0 || modo.getQtdBombasSinalizadoras() == 0){
+            Jogo.setGameOver(true);
+            return true;
+        }
+        return false;
     }
 
     public int getQtdBombasSinalizadoras() {

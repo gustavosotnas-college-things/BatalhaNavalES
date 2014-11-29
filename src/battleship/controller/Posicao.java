@@ -3,7 +3,6 @@
  */
 package battleship.controller;
 
-import battleship.controller.BattleshipGameException;
 import battleship.model.Jogo;
 
 public class Posicao {
@@ -15,7 +14,7 @@ public class Posicao {
             this.x = x;
             this.y = y;
         } else
-            throw new BattleshipGameException ("Posição digitada inválida! Tente novamente.");
+            throw new BattleshipGameException ("Posição digitada inválida! Tente novamente.\n");
     }
     
     public static boolean isPosicaoTabuleiroValida (int n) {

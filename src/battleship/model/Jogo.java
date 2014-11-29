@@ -11,11 +11,8 @@ public class Jogo {
     private static DificuldadeDoJogo dificuldadeDoJogo;
     private static ModoDeDistribuicao modoDeDistribuicao;
     private Tabuleiro tabuleiroP1; //tabuleiro do Jogador 1
-
-    public Tabuleiro getTabuleiroP1() {
-        return tabuleiroP1;
-    }
     private Tabuleiro tabuleiroP2; //tabuleiro do Jogador 2
+    private static boolean gameOver = false;
 
     public static ModoDeJogo getModoDeJogo() {
         return modoDeJogo;
@@ -29,6 +26,14 @@ public class Jogo {
         return modoDeDistribuicao;
     }
 
+    public static boolean isGameOver() {
+        return gameOver;
+    }
+
+    public static void setGameOver(boolean aGameOver) {
+        gameOver = aGameOver;
+    }
+
     //Construtor
     public Jogo(ModoDeJogo modoDeJogo, DificuldadeDoJogo dificuldadeDoJogo, ModoDeDistribuicao modoDeDistribuicao) /*throws BattleshipMenuException*/ {
 
@@ -40,8 +45,13 @@ public class Jogo {
     //Métodos
     public void comecarJogo() throws BattleshipException {
         inicializarTabuleiros();
-        BattleshipGameUI.menuFazerDistribuicaoTabuleiro(1, tabuleiroP1, modoDeJogo, modoDeDistribuicao); //Jogador 1
-        BattleshipGameUI.menuFazerDistribuicaoTabuleiro(2, tabuleiroP2, modoDeJogo, modoDeDistribuicao); //Jogador 2
+        BattleshipGameUI.menuFazerDistribuicaoTabuleiro(tabuleiroP1, modoDeJogo, modoDeDistribuicao); //Jogador 1
+        BattleshipGameUI.menuFazerDistribuicaoTabuleiro(tabuleiroP2, modoDeJogo, modoDeDistribuicao); //Jogador 2
+//        while (!gameOver)
+//        {
+            // modoDeJogo.comecarTurno(tabuleiroP2);
+            // modoDeJogo.comecarTurno(tabuleiroP1);
+//        }
     }
 
     private void inicializarTabuleiros() {

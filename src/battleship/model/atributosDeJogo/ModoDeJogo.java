@@ -7,5 +7,5 @@ public interface ModoDeJogo {
 
     public void setMunicaoInicial();
 
-    public void comecarTurno(Tabuleiro tabuleiro, int quantidade) throws BattleshipException;
+    public void comecarTurno(Tabuleiro tabuleiro) throws BattleshipException;
 }

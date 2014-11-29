@@ -30,4 +30,31 @@ public class QtdEmbarcacoes {
     public int getQtdPortaAvioes() {
         return qtdPortaAvioes;
     }
+    
+    public void decrementarSubmarino() {
+        qtdSubmarino--;
+    }
+
+    public void decrementarNavioTamanho2() {
+        qtdNavioTamanho2--;
+    }
+
+    public void decrementarNavioTamanho3() {
+        qtdNavioTamanho3--;
+    }
+
+    public void decrementarNavioTamanho4() {
+        qtdNavioTamanho4--;
+    }
+
+    public void decrementarPortaAvioes() {
+        qtdPortaAvioes--;
+    }
+
+    public void setQtdEmbarcacoes() {
+        qtdNavioTamanho2 *= 2;
+        qtdNavioTamanho3 *= 3;
+        qtdNavioTamanho4 *= 4;
+        qtdPortaAvioes *= 5;
+    }
 }

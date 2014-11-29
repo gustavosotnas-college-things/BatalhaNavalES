@@ -8,13 +8,14 @@ public class Tabuleiro {
     
     private Celula[][] tabuleiro;
     private final int numeroJogador;
-    protected QtdEmbarcacoes qtdEmbarcacoes;
     private final int tamanho;
+    private QtdEmbarcacoes qtdEmbarcacoes;
     
     public Tabuleiro(int player, int tamanho){
         this.tabuleiro = new Celula[tamanho][tamanho];
         this.numeroJogador = player;
         this.tamanho = tamanho;
+        this.qtdEmbarcacoes = new QtdEmbarcacoes();
         inicializarCelulas();
     }
     

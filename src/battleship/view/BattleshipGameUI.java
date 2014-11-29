@@ -9,8 +9,13 @@ import battleship.model.elementos.*;
 public class BattleshipGameUI {
 
     public static void exibeTabuleiro(Tabuleiro tabuleiro) {
-
+        System.out.print("\t");
+        for (int x = 0; x < tabuleiro.getTamanho(); x++) {
+            System.out.print("[" + x + "]\t");
+        }
+        System.out.println("\n");
         for (int i = 0; i < tabuleiro.getTamanho(); i++) {
+            System.out.print("[" + i + "]\t");
             for (int j = 0; j < tabuleiro.getTamanho(); j++) {
                 System.out.print(tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1) + "\t"); //imprime somente o último caractere da String
             }
@@ -24,7 +29,13 @@ public class BattleshipGameUI {
         String descricaoAcontecimento = null;
         Posicao posAtual;
 
+        System.out.print("\t");
+        for (int x = 0; x < tabuleiro.getTamanho(); x++) {
+            System.out.print("[" + x + "]\t");
+        }
+        System.out.println("\n");
         for (int i = 0; i < tabuleiro.getTamanho(); i++) {
+            System.out.print("[" + i + "]\t");
             for (int j = 0; j < tabuleiro.getTamanho(); j++) {
 
                 posAtual = new Posicao(i, j);
@@ -91,8 +102,7 @@ public class BattleshipGameUI {
         }
         if (aconteceuAlgo) {
             System.out.println(descricaoAcontecimento); //imprime o que aconteceu por último no tabuleiro
-        }
-        else {
+        } else {
             aconteceuAlgo = false;
         }
         return aconteceuAlgo;
@@ -111,25 +121,30 @@ public class BattleshipGameUI {
                 + "* --> Bomba explosiva\n");
     }
 
-    public static void menuFazerDistribuicaoTabuleiro(int numJogador, Tabuleiro tabuleiro, ModoDeJogo definidorDeBombas, ModoDeDistribuicao distribuidor) throws BattleshipException {
+    public static void menuFazerDistribuicaoTabuleiro(Tabuleiro tabuleiro, ModoDeJogo definidorDeBombas, ModoDeDistribuicao distribuidor) throws BattleshipException {
 
         BattleshipHelper.clearScreen();
 
         BattleshipMenuUI.menuHeaderBattleship();
-        System.out.println("\nJOGADOR " + numJogador + " - DISTRIBUIÇÃO DE EMBARCAÇÕES " + aliasModoDeJogo() + "\n");
-
+        System.out.println("\nTABULEIRO DO JOGADOR " + tabuleiro.getNumeroJogador() + " - DISTRIBUIÇÃO DE EMBARCAÇÕES " + aliasModoDeJogo() + "\n");
+        
         exibeTabuleiro(tabuleiro);
         legendaTabuleiro();
+                
+        BattleshipHelper.getchar(); //Aperte ENTER para continuar.
 
         definidorDeBombas.setMunicaoInicial();
-
         distribuidor.distribuirEmbarcacoes(tabuleiro);
+        
+        BattleshipHelper.clearScreen();
 
-        System.out.println("\nTabuleiro do jogador " + numJogador + " com embarcações escondidas:\n");
-        exibeTabuleiroFiltrado(tabuleiro);
-        System.out.println("Tabuleiro a mostra (EH TESTE!):");
+        BattleshipMenuUI.menuHeaderBattleship();
+        System.out.println("\nTABULEIRO DO JOGADOR " + tabuleiro.getNumeroJogador() + " A MOSTRA: \n");
+
         exibeTabuleiro(tabuleiro);
         legendaTabuleiro();
+        
+        BattleshipHelper.getchar(); //Aperte ENTER para continuar.
     }
 
     private static String aliasModoDeJogo() {
@@ -177,12 +192,32 @@ public class BattleshipGameUI {
         return result;
     }
 
-    public static Posicao menuDistribuirEmbarcacoes(int i, String tipoEmbarcacao) throws BattleshipException {
+    public static Posicao menuDistribuicaoLinhaColuna(int i, String tipoEmbarcacao) throws BattleshipException {
         System.out.print("\nDigite a linha que queres colocar o " + (i + 1) + " " + tipoEmbarcacao + ": ");
         int x = BattleshipHelper.lerOpcao();
         System.out.print("Digite a coluna que queres colocar o " + (i + 1) + " " + tipoEmbarcacao + ": ");
         int y = BattleshipHelper.lerOpcao();
         return new Posicao(x, y);
+    }
+
+    public static String menuDistribuicaoOrientacao(int i) {
+        boolean finished;
+        String orientacao = null;
+
+        finished = false;
+        while (!finished) {
+
+            try {
+                System.out.println("Digite a orientação desejada: \n");
+                System.out.println("1 - Horizontal");
+                System.out.println("2 - Vertical");
+                System.out.print("\nOpção: ");
+                orientacao = BattleshipHelper.processarMenuDistribuicaoOrientacao(BattleshipHelper.lerOpcao());
+            } catch (BattleshipException bgex) {
+                System.err.println(bgex.getMessage());
+            }
+        }
+        return orientacao;
     }
 
     public static Posicao menuDetonaBomba() throws BattleshipException {
