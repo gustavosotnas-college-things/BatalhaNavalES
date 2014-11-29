@@ -44,14 +44,19 @@ public class Jogo {
 
     //Métodos
     public void comecarJogo() throws BattleshipException {
+        boolean verifica;
+        gameOver = false;
         inicializarTabuleiros();
         BattleshipGameUI.menuFazerDistribuicaoTabuleiro(tabuleiroP1, modoDeJogo, modoDeDistribuicao); //Jogador 1
         BattleshipGameUI.menuFazerDistribuicaoTabuleiro(tabuleiroP2, modoDeJogo, modoDeDistribuicao); //Jogador 2
-//        while (!gameOver)
-//        {
-            // modoDeJogo.comecarTurno(tabuleiroP2);
-            // modoDeJogo.comecarTurno(tabuleiroP1);
-//        }
+        while (!gameOver) {
+
+            verifica = modoDeJogo.comecarTurno(tabuleiroP2);
+            if (verifica == false) {
+                modoDeJogo.comecarTurno(tabuleiroP1);
+            }
+
+        }
     }
 
     private void inicializarTabuleiros() {
