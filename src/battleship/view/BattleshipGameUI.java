@@ -294,7 +294,6 @@ public class BattleshipGameUI {
      * uma bomba (independentemente do tipo) no turno atual do Batalha Naval.
      * 
      * @return um objeto do tipo Posicao contendo a linha e coluna especificada pelo usuário onde é esperada ter uma embarcação
-     * @throws BattleshipException
      */
     public static Posicao menuDetonaBomba() {
         boolean finished = false;
