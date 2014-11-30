@@ -6,11 +6,16 @@ import battleship.controller.Posicao;
 import battleship.model.Jogo;
 import battleship.model.elementos.BombaExplosiva;
 import battleship.model.elementos.Celula;
-import battleship.model.elementos.Fogo;
 import battleship.model.elementos.Tabuleiro;
 import battleship.view.BattleshipGameUI;
-import battleship.view.BattleshipMenuUI;
 
+/**
+ * Classe implementadora de ModoDeJogo, define comportamentos específicos de Modo Tradicional 
+ * do Batalha Naval para cada uma das funções delegadas pela interface (padrão Strategy).
+ * 
+ * @author Gustavo Moraes
+ * @author Renan Ofugi
+ */
 public class ModoTradicional implements ModoDeJogo {
 
     @Override

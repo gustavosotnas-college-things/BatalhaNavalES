@@ -5,14 +5,20 @@ import battleship.controller.BattleshipHelper;
 import battleship.controller.BattleshipMenuException;
 import battleship.controller.Posicao;
 import battleship.model.Jogo;
-import battleship.model.elementos.BombaExplosiva;
-import battleship.model.elementos.BombaSinalizadora;
 import battleship.model.elementos.Celula;
 import battleship.model.elementos.Fogo;
 import battleship.model.elementos.Tabuleiro;
 import battleship.view.BattleshipGameUI;
 import battleship.view.BattleshipMenuUI;
 
+/**
+ * Classe implementadora de ModoDeJogo, define comportamentos específicos de Modo PQQD
+ * ("Professor Quer Quebrar o meu Design") do Batalha Naval para cada uma 
+ * das funções delegadas pela interface (padrão Strategy).
+ * 
+ * @author Gustavo Moraes
+ * @author Renan Ofugi
+ */
 public class ModoPQQD implements ModoDeJogo {
 
     private int qtdBombasSinalizadoras;
@@ -75,18 +81,42 @@ public class ModoPQQD implements ModoDeJogo {
         }
     }
 
+    /**
+     * Getter específico de ModoPQQD, da variável contadora de bombas sinalizadoras, 
+     * definidas inicialmente pelo usuário.
+     * 
+     * @return  a quantidade de bombas sinalizadoras atual no jogo.
+     */
     public int getQtdBombasSinalizadoras() {
         return qtdBombasSinalizadoras;
     }
 
+    /**
+     * Setter específico de ModoPQQD, da variável contadora de bombas sinalizadoras, 
+     * usado para definir inicialmente a quantidade de bombas sinalizadoras para uso no Batalha Naval.
+     * 
+     * @param qtdBombasSinalizadoras  a quantidade de bombas sinalizadoras desejada pelo usuário.
+     */
     public void setQtdBombasSinalizadoras(int qtdBombasSinalizadoras) {
         this.qtdBombasSinalizadoras = qtdBombasSinalizadoras;
     }
 
+    /**
+     * Getter específico de ModoPQQD, da variável contadora de bombas explosivas, 
+     * definidas inicialmente pelo usuário.
+     * 
+     * @return  a quantidade de bombas explosivas atual no jogo.
+     */
     public int getQtdBombasExplosivas() {
         return qtdBombasExplosivas;
     }
 
+    /**
+     * Setter específico de ModoPQQD, da variável contadora de bombas explosivas, 
+     * usado para definir inicialmente a quantidade de bombas explosivas para uso no Batalha Naval.
+     * 
+     * @param qtdBombasExplosivas  a quantidade de bombas explosivas desejada pelo usuário.
+     */
     public void setQtdBombasExplosivas(int qtdBombasExplosivas) {
         this.qtdBombasExplosivas = qtdBombasExplosivas;
     }
