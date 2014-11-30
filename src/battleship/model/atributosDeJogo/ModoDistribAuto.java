@@ -16,7 +16,7 @@ public class ModoDistribAuto implements ModoDeDistribuicao {
     private Random gerador = new Random();
 
     @Override
-    public void distribuirEmbarcacoes(Tabuleiro tabuleiro) throws BattleshipGameException {
+    public void distribuirEmbarcacoes(Tabuleiro tabuleiro) {
         distribuirSubmarino(tabuleiro);
         distribuirNavioTamanho2(tabuleiro);
         distribuirNavioTamanho3(tabuleiro);
@@ -44,10 +44,18 @@ public class ModoDistribAuto implements ModoDeDistribuicao {
         }
     }
 
-    private void distribuirNavioTamanho2(Tabuleiro tabuleiro) throws BattleshipGameException {
+    private void distribuirNavioTamanho2(Tabuleiro tabuleiro) {
 
-        String orientacao = BattleshipHelper.processarMenuDistribuicaoOrientacao(gerador.nextInt(2) + 1);
-        processaDistribuicaoNavioTamanho2(tabuleiro, orientacao);
+        boolean finished = false;
+        while(!finished) {
+            try {
+                String orientacao = BattleshipHelper.processarMenuDistribuicaoOrientacao(gerador.nextInt(2) + 1);
+                processaDistribuicaoNavioTamanho2(tabuleiro, orientacao);
+                finished = true;
+            } catch (BattleshipGameException bgex) {
+                // faça nada, o while vai fazer gerar outra orientacao
+            }
+        }
     }
 
     private void processaDistribuicaoNavioTamanho2(Tabuleiro tabuleiro, String orientacao) {
@@ -85,10 +93,18 @@ public class ModoDistribAuto implements ModoDeDistribuicao {
         }
     }
 
-    private void distribuirNavioTamanho3(Tabuleiro tabuleiro) throws BattleshipGameException {
-
-        String orientacao = BattleshipHelper.processarMenuDistribuicaoOrientacao(gerador.nextInt(2) + 1);
-        processaDistribuicaoNavioTamanho3(tabuleiro, orientacao);
+    private void distribuirNavioTamanho3(Tabuleiro tabuleiro) {
+        
+        boolean finished = false;
+        while (!finished) {
+            try {
+                String orientacao = BattleshipHelper.processarMenuDistribuicaoOrientacao(gerador.nextInt(2) + 1);
+                processaDistribuicaoNavioTamanho3(tabuleiro, orientacao);
+                finished = true;
+            } catch (BattleshipGameException bgex) {
+                // faça nada, o while vai fazer gerar outra orientacao
+            }
+        }
     }
 
     private void processaDistribuicaoNavioTamanho3(Tabuleiro tabuleiro, String orientacao) {
@@ -137,9 +153,18 @@ public class ModoDistribAuto implements ModoDeDistribuicao {
         }
     }
 
-    private void distribuirNavioTamanho4(Tabuleiro tabuleiro) throws BattleshipGameException {
-        String orientacao = BattleshipHelper.processarMenuDistribuicaoOrientacao(gerador.nextInt(2) + 1);
-        processaDistribuicaoNavioTamanho4(tabuleiro, orientacao);
+    private void distribuirNavioTamanho4(Tabuleiro tabuleiro) {
+        
+        boolean finished = false;
+        while (!finished) {
+            try {
+                String orientacao = BattleshipHelper.processarMenuDistribuicaoOrientacao(gerador.nextInt(2) + 1);
+                processaDistribuicaoNavioTamanho4(tabuleiro, orientacao);
+                finished = true;
+            } catch (BattleshipGameException bgex) {
+                // faça nada, o while vai fazer gerar outra orientacao
+            }
+        }
     }
 
     private void processaDistribuicaoNavioTamanho4(Tabuleiro tabuleiro, String orientacao) {
@@ -193,9 +218,18 @@ public class ModoDistribAuto implements ModoDeDistribuicao {
         }
     }
 
-    private void distribuirPortaAvioes(Tabuleiro tabuleiro) throws BattleshipGameException {
-        String orientacao = BattleshipHelper.processarMenuDistribuicaoOrientacao(gerador.nextInt(2) + 1);
-        processaDistribuicaoPortaAvioes(tabuleiro, orientacao);
+    private void distribuirPortaAvioes(Tabuleiro tabuleiro) {
+        
+        boolean finished = false;
+        while (!finished) {
+            try {
+                String orientacao = BattleshipHelper.processarMenuDistribuicaoOrientacao(gerador.nextInt(2) + 1);
+                processaDistribuicaoPortaAvioes(tabuleiro, orientacao);
+                finished = true;
+            } catch (BattleshipGameException bgex) {
+                // faça nada, o while vai fazer gerar outra orientacao
+            }
+        }
     }
 
     private void processaDistribuicaoPortaAvioes(Tabuleiro tabuleiro, String orientacao) {
@@ -215,8 +249,8 @@ public class ModoDistribAuto implements ModoDeDistribuicao {
                         boolean sobreposicao3 = BattleshipHelper.verificaSobreposicao(tabuleiro, tabuleiro.getElemento(coordenada), coordenada.getX() + 1, coordenada.getY() + 1);
                         boolean sobreposicao4 = BattleshipHelper.verificaSobreposicao(tabuleiro, tabuleiro.getElemento(coordenada), coordenada.getX() + 2, coordenada.getY() + 1);
 
-                        if ((sobreposicao1 == false) && (sobreposicao2 == false) && (sobreposicao3 == false) && (sobreposicao4 == false)) {
-                            tabuleiro.setElemento(new NavioTamanho4(tabuleiro.getElemento(coordenada)), coordenada);
+                        if (!(sobreposicao1) || (sobreposicao2) || (sobreposicao3) || (sobreposicao4)) {
+                            tabuleiro.setElemento(new PortaAvioes(tabuleiro.getElemento(coordenada)), coordenada);
                             tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX(), coordenada.getY() + 1));
                             tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX(), coordenada.getY() + 2));
                             tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX() +1, coordenada.getY() + 1));
@@ -233,8 +267,8 @@ public class ModoDistribAuto implements ModoDeDistribuicao {
                         boolean sobreposicao3 = BattleshipHelper.verificaSobreposicao(tabuleiro, tabuleiro.getElemento(coordenada), coordenada.getX() + 1, coordenada.getY()+1);
                         boolean sobreposicao4 = BattleshipHelper.verificaSobreposicao(tabuleiro, tabuleiro.getElemento(coordenada), coordenada.getX() + 1, coordenada.getY()+2);
 
-                        if ((sobreposicao1 == false) && (sobreposicao2 == false) && (sobreposicao3 == false) && (sobreposicao4 == false)) {
-                            tabuleiro.setElemento(new NavioTamanho4(tabuleiro.getElemento(coordenada)), coordenada);
+                        if (!(sobreposicao1) || (sobreposicao2) || (sobreposicao3) || (sobreposicao4)) {
+                            tabuleiro.setElemento(new PortaAvioes(tabuleiro.getElemento(coordenada)), coordenada);
                             tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX() + 1, coordenada.getY()));
                             tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX() + 2, coordenada.getY()));
                             tabuleiro.setElemento(tabuleiro.getElemento(coordenada), new Posicao(coordenada.getX() + 1, coordenada.getY() + 1));
