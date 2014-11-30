@@ -6,8 +6,19 @@ import battleship.model.atributosDeJogo.ModoDeDistribuicao;
 import battleship.model.atributosDeJogo.ModoDeJogo;
 import battleship.model.elementos.*;
 
+/**
+ * Classe de interface textual do usuário (Text-based user interface - TUI)
+ * para o jogo do BatalhaNavalES. Todos os métodos são estáticos (static).
+ * 
+ * @author Gustavo Moraes
+ * @author Renan Ofugi
+ */
 public class BattleshipGameUI {
 
+    /**
+     * Exibe uma representação textual do tabuleiro de determinado jogador sem modificações.
+     * @param tabuleiro o tabuleiro que é desejado exibir seu conteúdo
+     */
     public static void exibeTabuleiro(Tabuleiro tabuleiro) {
         System.out.print("\t");
         for (int x = 0; x < tabuleiro.getTamanho(); x++) {
@@ -23,6 +34,14 @@ public class BattleshipGameUI {
         }
     }
 
+    /**
+     * Exibe uma representação textual do tabuleiro de determinado jogador 
+     * de forma a esconder do outro jogador as posições onde o seu oponente colocou as suas embarcações.
+     * 
+     * @param tabuleiro  o tabuleiro que é desejado exibir seu conteúdo
+     * @return uma "flag" para saber se houve algum evento que modificou o tabuleiro.
+     * @throws BattleshipGameException  quando é tentado varrer uma Posicao inválida
+     */
     public static boolean exibeTabuleiroFiltrado(Tabuleiro tabuleiro) throws BattleshipGameException {
 
         boolean aconteceuAlgo = false;
@@ -108,6 +127,9 @@ public class BattleshipGameUI {
         return aconteceuAlgo;
     }
 
+    /**
+     * Exibe informações sobre todos os símbolos usados no tabuleiro, a fins de aprendizado do usuário.
+     */
     public static void legendaTabuleiro() {
         System.out.println("LEGENDA:");
         System.out.println("~ --> Água\n"
@@ -121,7 +143,14 @@ public class BattleshipGameUI {
                 + "* --> Bomba explosiva\n");
     }
 
-    public static void menuFazerDistribuicaoTabuleiro(Tabuleiro tabuleiro, ModoDeJogo definidorDeBombas, ModoDeDistribuicao distribuidor) throws BattleshipException {
+    /**
+     * Método responsável por fazer a chamada das funções responsáveis pela distribuição de embarcações no jogo.
+     * 
+     * @param tabuleiro  o tabuleiro de determinado jogador
+     * @param definidorDeBombas a interface de modo de jogo instanciada anteriormente com o usuário
+     * @param distribuidor a interface de modo de distribuição instanciada anteriormente com o usuário
+     */
+    public static void menuFazerDistribuicaoTabuleiro(Tabuleiro tabuleiro, ModoDeJogo definidorDeBombas, ModoDeDistribuicao distribuidor) {
 
         BattleshipHelper.clearScreen();
 
@@ -147,6 +176,9 @@ public class BattleshipGameUI {
         BattleshipHelper.getchar(); //Aperte ENTER para continuar.
     }
 
+    /**
+     * Exibe informações sobre o nome do modo de jogo de forma apresentável ao usuário.
+     */
     private static String aliasModoDeJogo() {
         String alias = null;
         switch (Jogo.getModoDeJogo().getClass().getSimpleName()) {
@@ -160,6 +192,13 @@ public class BattleshipGameUI {
         return alias;
     }
 
+    /**
+     * Exibe informações sobre o nome da embarcação de forma apresentável ao usuário 
+     * sem criar um objeto do tipo de embarcação e fazer chamada da função "whoami()"
+     * dentro dela apenas para isso.
+     * @param simbolo o caractere da String whoami que as embarcações tem nas suas decorações
+     * @see battleship.model.elementos.Embarcacao#whoami()
+     */
     private static String aliasNomeEmbarcacao(String simbolo) {
         String alias = null;
         switch (simbolo) {
@@ -182,6 +221,14 @@ public class BattleshipGameUI {
         return alias;
     }
 
+    /**
+     * Menu da escolha da quantidade de bombas de cada tipo no início do modo PQQD do Batalha Naval.
+     * É feita a interação do usuário para escolher quantas bombas de cada tipo é desejado para uso no decorrer do jogo.
+     * 
+     * @return um vetor de inteiros sendo: o index [0] a quantidade de bombas sinalizadoras e o index [1] a de bombas explosivas
+     * @throws BattleshipMenuException  quando o usuário digita algo que não é número 
+     * @see battleship.model.atributosDeJogo.ModoPQQD#setMunicaoInicial()
+     */
     public static int[] menuSetarMunicaoPQQD() throws BattleshipMenuException { //é vetor só pra retornar duas variaveis pro ModoPQQD
         int[] result = new int[2];
         System.out.print("\nQuantas bombas sinalizadoras?: ");
@@ -192,6 +239,17 @@ public class BattleshipGameUI {
         return result;
     }
 
+    /**
+     * Menu da escolha da posição de onde será colocada uma embarcação no tabuleiro.
+     * É feita a interação do usuário para escolher a posição do tabuleiro onde o usuário deseja ter 
+     * uma embarcação na iteração atual de distribuição manual.
+     * 
+     * @param i o iterador de iterações de distribuição de embarcações 
+     * @param tipoEmbarcacao a string do nome da embarcação para apresentação ao usuário
+     * @return um objeto do tipo Posicao contendo a linha e coluna especificada pelo usuário onde é desejada ter uma embarcação
+     * @throws BattleshipException quando o usuário digita uma posição (linha e coluna) fora dos limites do tabuleiro ou um número natural inválido
+     * @see battleship.model.atributosDeJogo.ModoDistribManual#distribuirEmbarcacoes(Tabuleiro)
+     */
     public static Posicao menuDistribuicaoLinhaColuna(int i, String tipoEmbarcacao) throws BattleshipException {
         System.out.print("\nDigite a linha que queres colocar o " + (i + 1) + " " + tipoEmbarcacao + ": ");
         int x = BattleshipHelper.lerOpcao();
@@ -200,6 +258,15 @@ public class BattleshipGameUI {
         return new Posicao(x, y);
     }
 
+    /**
+     * Menu da escolha da orientação de colocação de uma embarcação no tabuleiro.
+     * É feita a interação do usuário para escolher a orientação (horizontal ou vertical) que o usuário deseja ter 
+     * uma embarcação na iteração atual de distribuição manual.
+     * 
+     * @param i o iterador de iterações de distribuição de embarcações 
+     * @return a string correspondente com o número da opção digitada pelo usuário
+     * @see battleship.model.atributosDeJogo.ModoDistribManual#distribuirEmbarcacoes(Tabuleiro)
+     */
     public static String menuDistribuicaoOrientacao(int i) {
         boolean finished;
         String orientacao = null;
@@ -221,7 +288,15 @@ public class BattleshipGameUI {
         return orientacao;
     }
 
-    public static Posicao menuDetonaBomba() throws BattleshipException {
+    /**
+     * Menu da escolha da posição de onde será "lançada" uma bomba no tabuleiro.
+     * É feita a interação do usuário para escolher a posição do tabuleiro onde o usuário deseja "lançar"
+     * uma bomba (independentemente do tipo) no turno atual do Batalha Naval.
+     * 
+     * @return um objeto do tipo Posicao contendo a linha e coluna especificada pelo usuário onde é esperada ter uma embarcação
+     * @throws BattleshipException
+     */
+    public static Posicao menuDetonaBomba() {
         boolean finished = false;
         Posicao posicaoEscolhida = null;
         

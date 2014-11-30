@@ -4,6 +4,6 @@ import battleship.controller.BattleshipException;
 import battleship.model.elementos.Tabuleiro;
 
 public interface ModoDeDistribuicao {
-    public void distribuirEmbarcacoes(Tabuleiro tabuleiro) throws BattleshipException;
+    public void distribuirEmbarcacoes(Tabuleiro tabuleiro);
     
 }
