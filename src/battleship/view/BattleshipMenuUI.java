@@ -142,6 +142,7 @@ public class BattleshipMenuUI {
     
     public static void menuMostraJogador(Tabuleiro tabuleiro){
         System.out.println("É A VEZ DO JOGADOR " + tabuleiro.getTamanho());
+        BattleshipHelper.getchar();
     }
 
 }
