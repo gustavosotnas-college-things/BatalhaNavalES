@@ -4,6 +4,7 @@ import battleship.controller.BattleshipException;
 import battleship.model.atributosDeJogo.*;
 import battleship.model.elementos.*;
 import battleship.view.BattleshipGameUI;
+import battleship.view.BattleshipMenuUI;
 
 public class Jogo {
 
@@ -49,9 +50,12 @@ public class Jogo {
         BattleshipGameUI.menuFazerDistribuicaoTabuleiro(tabuleiroP1, modoDeJogo, modoDeDistribuicao); //Jogador 1
         BattleshipGameUI.menuFazerDistribuicaoTabuleiro(tabuleiroP2, modoDeJogo, modoDeDistribuicao); //Jogador 2
         while (!gameOver) {
-
+            
+            BattleshipMenuUI.menuMostraJogador(tabuleiroP1);
             modoDeJogo.comecarTurno(tabuleiroP2);
             if (!gameOver) {
+                
+                BattleshipMenuUI.menuMostraJogador(tabuleiroP2);
                 modoDeJogo.comecarTurno(tabuleiroP1);
             }
         }

@@ -3,6 +3,7 @@ package battleship.view;
 import battleship.controller.*;
 import battleship.model.Jogo;
 import battleship.model.atributosDeJogo.*;
+import battleship.model.elementos.Tabuleiro;
 
 /**
  * Classe de interface textual do usuário (Text-based user interface - TUI)
@@ -194,6 +195,11 @@ public class BattleshipMenuUI {
     public static boolean finalizarPrograma() {
         System.out.println("\nFinalizando programa.\n");
         return true;
+    }
+    
+    public static void menuMostraJogador(Tabuleiro tabuleiro){
+        System.out.println("É A VEZ DO JOGADOR " + tabuleiro.getTamanho());
+        BattleshipHelper.getchar();
     }
 
 }

@@ -73,7 +73,7 @@ public class BattleshipHelper {
         }
         return distribuicao;
     }
-    
+
     public static Fogo processarMenuTipoBombaPQQD(int opcao, Celula alvo, ModoPQQD pqqd) throws BattleshipException {
 
         Fogo retorno = null;
@@ -81,19 +81,19 @@ public class BattleshipHelper {
             case 1:
                 if (!(alvo.getNome().equals("Bomba Explosiva"))) {
                     retorno = new BombaExplosiva(alvo);
-                    pqqd.setQtdBombasExplosivas(pqqd.getQtdBombasExplosivas()-1);
+                    pqqd.setQtdBombasExplosivas(pqqd.getQtdBombasExplosivas() - 1);
+                } else {
+                    throw new BattleshipGameException("Opção inválida. Já existe uma " + alvo.getNome() + " nesta posição.");
                 }
-                else
-                    throw new BattleshipGameException ("Opção inválida. Já existe uma " +alvo.getNome()+ " nesta posição.");
                 break;
             case 2:
                 if (!((alvo.getNome().equals("Bomba Sinalizadora")) || (alvo.getNome().equals("Bomba Explosiva")))) {
-                    
+
                     retorno = new BombaSinalizadora(alvo);
-                    pqqd.setQtdBombasSinalizadoras(pqqd.getQtdBombasSinalizadoras()-1);
+                    pqqd.setQtdBombasSinalizadoras(pqqd.getQtdBombasSinalizadoras() - 1);
+                } else {
+                    throw new BattleshipGameException("Opção inválida. Já existe uma " + alvo.getNome() + " nesta posição.");
                 }
-                else
-                    throw new BattleshipGameException ("Opção inválida. Já existe uma " +alvo.getNome()+ " nesta posição.");
                 break;
             default:
                 throw new BattleshipMenuException("Opção inválida. Escolha apenas uma das opções listadas.");
@@ -111,7 +111,7 @@ public class BattleshipHelper {
         }
         return opcao;
     }
-    
+
     //Função para pausar o programa até o usuário apertar ENTER (forma semelhante ao "getchar" do C).
     public static void getchar() {
 
@@ -126,27 +126,27 @@ public class BattleshipHelper {
             // faça nada
         }
     }
-    
+
     public static void clearScreen() {
         for (int i = 0; i < PAGE_SIZE; i++) {
             System.out.println();
         }
     }
 
-    public static void verificaParamJogo (Object param) throws BattleshipMenuException {
+    public static void verificaParamJogo(Object param) throws BattleshipMenuException {
         if (param == null) {
             throw new BattleshipMenuException("Jogo não foi iniciado");
         }
     }
-    
-    public static void detonaBomba(){
+
+    public static void detonaBomba() {
         //verifica o que tem antes da decoração aqua
         // se tiver embarcação,logo, submarino --;
     }
 
     public static String processarMenuDistribuicaoOrientacao(int opcao) throws BattleshipGameException {
         String retorno = null;
-        switch (opcao){
+        switch (opcao) {
             case 1:
                 retorno = "horizontal";
                 break;
@@ -157,5 +157,14 @@ public class BattleshipHelper {
                 throw new BattleshipGameException("Opção inválida. Escolha apenas uma das opções listadas.");
         }
         return retorno;
+    }
+
+    public static boolean verificaSobreposicao(Tabuleiro tabuleiro, Celula conteudo, int x, int y) throws BattleshipGameException {
+        
+        if (conteudo.getNome().equals(tabuleiro.tabuleiro[x][y].getNome())) {
+            System.out.println("Nesta posição já existe um" + conteudo.getNome());
+            return true;
+        }
+        return false;
     }
 }
