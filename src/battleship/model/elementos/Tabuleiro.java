@@ -6,7 +6,7 @@ import battleship.controller.QtdEmbarcacoes;
 
 public class Tabuleiro {
     
-    private Celula[][] tabuleiro;
+    public Celula[][] tabuleiro;
     private final int numeroJogador;
     private final int tamanho;
     private QtdEmbarcacoes qtdEmbarcacoes;
