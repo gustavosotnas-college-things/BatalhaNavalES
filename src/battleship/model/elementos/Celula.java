@@ -8,5 +8,7 @@ public abstract class Celula {
         return whoami;
     }
     
-    public abstract String getNome();
+    public String getNome(){
+        return whoami;
+    }
 }

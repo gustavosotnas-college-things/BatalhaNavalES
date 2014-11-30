@@ -159,12 +159,11 @@ public class BattleshipHelper {
         return retorno;
     }
 
-    public static boolean verificaSobreposicao(Tabuleiro tabuleiro, Celula conteudo, int x, int y) throws BattleshipGameException {
-        
-        if (conteudo.getNome().equals(tabuleiro.tabuleiro[x][y].getNome())) {
-            System.out.println("Nesta posição já existe um" + conteudo.getNome());
-            return true;
+    public static void verificaSobreposicao(Celula conteudo) throws BattleshipGameException {
+       
+        if (!(conteudo.whoami().substring(conteudo.whoami().length() - 1).contains("~"))) //se já tem tal elemento decorado anteriormente em dada posicao
+        {
+            throw new BattleshipGameException("Nesta posição já existe um " + conteudo.getNome());
         }
-        return false;
     }
 }
