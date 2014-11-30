@@ -99,11 +99,11 @@ public class Jogo {
         BattleshipGameUI.menuFazerDistribuicaoTabuleiro(tabuleiroP2, modoDeJogo, modoDeDistribuicao); //Jogador 2
         while (!gameOver) {
             
-            BattleshipMenuUI.menuMostraJogador(tabuleiroP1);
+            BattleshipGameUI.menuMostraJogador(tabuleiroP1.getNumeroJogador());
             modoDeJogo.comecarTurno(tabuleiroP2);
             if (!gameOver) {
                 
-                BattleshipMenuUI.menuMostraJogador(tabuleiroP2);
+                BattleshipGameUI.menuMostraJogador(tabuleiroP2.getNumeroJogador());
                 modoDeJogo.comecarTurno(tabuleiroP1);
             }
         }

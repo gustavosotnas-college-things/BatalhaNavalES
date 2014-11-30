@@ -2,7 +2,7 @@ package battleship.model.elementos;
 
 public class Agua extends DecoradorElemento{
     Celula tabuleiro;
-    
+    private final String nome = "agua";
     public Agua (Celula tabuleiro){
         this.tabuleiro = tabuleiro;
     }
@@ -14,6 +14,6 @@ public class Agua extends DecoradorElemento{
 
     @Override
     public String getNome() {
-        return "Água";
+        return nome;
     }
 }

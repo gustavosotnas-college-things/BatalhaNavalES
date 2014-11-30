@@ -34,13 +34,13 @@ public class Tabuleiro {
         this.qtdEmbarcacoes = new QtdEmbarcacoes();
         inicializarCelulas();
     }
-    
-    private void inicializarCelulas(){
+
+    private void inicializarCelulas() {
         for (int i = 0; i < tamanho; i++) {
             for (int j = 0; j < tamanho; j++) {
-                    Celula celula = new Terreno();
-                    celula = new Agua(celula);
-                    tabuleiro[i][j] = celula;
+                Celula celula = new Terreno();
+                celula = new Agua(celula);
+                tabuleiro[i][j] = celula;
             }
         }
     }
@@ -63,18 +63,24 @@ public class Tabuleiro {
         return tabuleiro[coord.getX()][coord.getY()];
     }
 
-    public void setElemento(Celula conteudo,Posicao coord) throws BattleshipGameException {
-        if(conteudo.getNome().equals(tabuleiro[coord.getX()][coord.getY()].getNome())) //se já tem tal elemento decorado anteriormente em dada posicao
+    public void setElementoDistrib(Celula conteudo, Posicao coord) throws BattleshipGameException {
+       
+        tabuleiro[coord.getX()][coord.getY()] = conteudo;
+       
+    }
+
+    public void setElementoGame(Celula conteudo, Posicao coord) throws BattleshipGameException {
+        if (conteudo.getNome().equals(tabuleiro[coord.getX()][coord.getY()].getNome())) //se já tem tal elemento decorado anteriormente em dada posicao
         {
             throw new BattleshipGameException("Nesta posição já existe um " + conteudo.getNome());
-        }else {
+        } else {
             tabuleiro[coord.getX()][coord.getY()] = conteudo;
             registrarExplosao(tabuleiro[coord.getX()][coord.getY()]);
         }
     }
-    
+
     private void registrarExplosao(Celula celula) {
-        switch(celula.whoami().substring(celula.whoami().length()-1)){
+        switch (celula.whoami().substring(celula.whoami().length() - 1)) {
             case "1":
                 qtdEmbarcacoes.decrementarSubmarino();
                 break;

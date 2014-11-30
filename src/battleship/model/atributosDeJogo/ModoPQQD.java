@@ -54,12 +54,14 @@ public class ModoPQQD implements ModoDeJogo {
 
                     Posicao posicao = BattleshipGameUI.menuDetonaBomba(); //Pede a linha e coluna do alvo no tabuleiro
                     Celula alvo = tabuleiro.getElemento(posicao);
-                    Fogo bomba = BattleshipHelper.processarMenuTipoBombaPQQD(BattleshipMenuUI.MenuTipoBomba(), alvo, this); //pede para escolher qual tipo de bomba
+                    Fogo bomba = BattleshipHelper.processarMenuTipoBombaPQQD(BattleshipGameUI.menuTipoBomba(), alvo, this); //pede para escolher qual tipo de bomba
 
-                    tabuleiro.setElemento(bomba, posicao);
+                    tabuleiro.setElementoDistrib(bomba, posicao);
                     
                     acontecerAlgo = BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
+                    BattleshipHelper.getchar();
                     verificaGameOver(tabuleiro);
+                    
 
             } catch (BattleshipException bex) {
                 System.err.println(bex.getMessage());

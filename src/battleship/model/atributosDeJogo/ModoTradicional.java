@@ -35,8 +35,9 @@ public class ModoTradicional implements ModoDeJogo {
                     Posicao posicao = BattleshipGameUI.menuDetonaBomba(); //Pede a linha e coluna do alvo no tabuleiro
                     Celula alvo = tabuleiro.getElemento(posicao);
 
-                    tabuleiro.setElemento(new BombaExplosiva(alvo), posicao);
+                    tabuleiro.setElementoDistrib(new BombaExplosiva(alvo), posicao);
                     acontecerAlgo = BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
+                    BattleshipHelper.getchar();
                     verificaGameOver(tabuleiro);
 
             } catch (BattleshipException bex) {

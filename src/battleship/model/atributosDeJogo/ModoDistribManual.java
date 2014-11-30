@@ -27,7 +27,7 @@ public class ModoDistribManual implements ModoDeDistribuicao{
             
                 try {
                     Posicao coordenada = BattleshipGameUI.menuDistribuicaoLinhaColuna(i, "submarino");
-                    tabuleiro.setElemento(new Submarino(tabuleiro.getElemento(coordenada)) ,coordenada);
+                    tabuleiro.setElementoDistrib(new Submarino(tabuleiro.getElemento(coordenada)) ,coordenada);
                     finished = true;
                 } catch (BattleshipException bex) {
                     System.err.println(bex.getMessage());
