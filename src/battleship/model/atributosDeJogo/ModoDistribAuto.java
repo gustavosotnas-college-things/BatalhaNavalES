@@ -4,11 +4,7 @@ import battleship.controller.BattleshipGameException;
 import battleship.controller.BattleshipHelper;
 import battleship.controller.Posicao;
 import battleship.model.elementos.Tabuleiro;
-import battleship.model.elementos.embarcacoes.NavioTamanho2;
-import battleship.model.elementos.embarcacoes.NavioTamanho3;
-import battleship.model.elementos.embarcacoes.NavioTamanho4;
-import battleship.model.elementos.embarcacoes.PortaAvioes;
-import battleship.model.elementos.embarcacoes.Submarino;
+import battleship.model.elementos.embarcacoes.*;
 import java.util.Random;
 
 /**
@@ -102,7 +98,7 @@ public class ModoDistribAuto implements ModoDeDistribuicao {
                     }
 
                 } catch (BattleshipGameException bgex) {
-                    // teste de verificação
+                    // faça nada, o while vai fazer gerar outra Posicao
                 }
             }
         }
@@ -165,7 +161,7 @@ public class ModoDistribAuto implements ModoDeDistribuicao {
                     }
 
                 } catch (BattleshipGameException bgex) {
-                    // teste de verificação
+                    // faça nada, o while vai fazer gerar outra Posicao
                 }
             }
 
@@ -232,7 +228,7 @@ public class ModoDistribAuto implements ModoDeDistribuicao {
                     }
 
                 } catch (BattleshipGameException bgex) {
-                    // teste de verificação
+                    // faça nada, o while vai fazer gerar outra Posicao
                 }
             }
 
@@ -302,9 +298,8 @@ public class ModoDistribAuto implements ModoDeDistribuicao {
 
                         finished = true;
                     }
-
                 } catch (BattleshipGameException bgex) {
-                    // teste de verificação
+                    // faça nada, o while vai fazer gerar outra Posicao
                 }
 
             }

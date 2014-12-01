@@ -25,9 +25,9 @@ public class ModoTradicional implements ModoDeJogo {
 
     public void comecarTurno(Tabuleiro tabuleiro) {
 
-        boolean acontecerAlgo = true;
+        boolean acabarAvezDoJogador = false;
 
-        while (acontecerAlgo) {
+        while (!acabarAvezDoJogador) {
 
             try {
                     BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
@@ -36,7 +36,8 @@ public class ModoTradicional implements ModoDeJogo {
                     Celula alvo = tabuleiro.getElemento(posicao);
 
                     tabuleiro.setElementoDistrib(new BombaExplosiva(alvo), posicao);
-                    acontecerAlgo = BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
+                    
+                    acabarAvezDoJogador = BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
                     BattleshipHelper.getchar();
                     verificaGameOver(tabuleiro);
 

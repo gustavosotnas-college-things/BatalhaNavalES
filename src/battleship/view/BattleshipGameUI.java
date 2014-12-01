@@ -16,15 +16,16 @@ import battleship.model.elementos.*;
 public class BattleshipGameUI {
 
     private static boolean aconteceuAlgo;
+    private static boolean acabouAvez;
 
-    public static boolean isAconteceuAlgo() {
-        return aconteceuAlgo;
+    public static void setAconteceuAlgo(boolean seAconteceuAlgo) {
+        if (seAconteceuAlgo)
+            aconteceuAlgo = seAconteceuAlgo;
     }
 
-    public static void setAconteceuAlgo(boolean aconteceuAlgo) {
-        if (aconteceuAlgo) {
-            BattleshipGameUI.aconteceuAlgo = aconteceuAlgo;
-        }
+    public static void setAcabouAvez(boolean seAcabouAvez) {
+        if(seAcabouAvez)
+            acabouAvez = seAcabouAvez;
     }
 
     /**
@@ -62,6 +63,9 @@ public class BattleshipGameUI {
     public static boolean exibeTabuleiroFiltrado(Tabuleiro tabuleiro) throws BattleshipGameException {
 
         String descricaoAcontecimento = null;
+        aconteceuAlgo = false;
+        acabouAvez = false;
+        
         Posicao posAtual;
 
         System.out.print("\t");
@@ -85,8 +89,13 @@ public class BattleshipGameUI {
                     if (!BattleshipLogger.consultaPosicaoLog(posAtual)) //verifica se aquela posição já foi escolhida antes (já foi adicionado no log)
                     {
                         setAconteceuAlgo(true);
-                        descricaoAcontecimento = "A bomba explodiu um " + aliasNomeEmbarcacao(tabuleiro.getTabuleiro()[i][j].whoami().charAt(tabuleiro.getTabuleiro()[i][j].whoami().length() - 2));
+                        descricaoAcontecimento = "A bomba explodiu um " + aliasNomeEmbarcacao(tabuleiro.getTabuleiro()[i][j].whoami().charAt(tabuleiro.getTabuleiro()[i][j].whoami().length() - 2)) + " na posicao ["+ posAtual.getX() +"] ["+ posAtual.getY() +"]";
                         BattleshipLogger.adicionaLog(posAtual, descricaoAcontecimento);
+                        setAcabouAvez(false);
+                    }
+                    else
+                    {
+                        aconteceuAlgo = false;
                     }
                 } else if ((tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1).contains("*"))
                         && (tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 2).contains("~"))) {
@@ -99,6 +108,11 @@ public class BattleshipGameUI {
                         setAconteceuAlgo(true);
                         descricaoAcontecimento = "A bomba errou o alvo! Tente novamente na próxima vez.";
                         BattleshipLogger.adicionaLog(posAtual, descricaoAcontecimento);
+                        setAcabouAvez(true);
+                    }
+                    else
+                    {
+                        aconteceuAlgo = false;
                     }
                 } else if ((tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1).contains("!"))
                         && (!tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 2).contains("~"))) {
@@ -109,8 +123,13 @@ public class BattleshipGameUI {
                     if (!BattleshipLogger.consultaPosicaoLog(posAtual)) //verifica se aquela posição já foi escolhida antes (já foi adicionado no log)
                     {
                         setAconteceuAlgo(true);
-                        descricaoAcontecimento = "A bomba sinalizadora encontrou um " + aliasNomeEmbarcacao(tabuleiro.getTabuleiro()[i][j].whoami().charAt(tabuleiro.getTabuleiro()[i][j].whoami().length() - 2));
+                        descricaoAcontecimento = "A bomba sinalizadora encontrou um " + aliasNomeEmbarcacao(tabuleiro.getTabuleiro()[i][j].whoami().charAt(tabuleiro.getTabuleiro()[i][j].whoami().length() - 2)) + " na posicao ["+ posAtual.getX() +"] ["+ posAtual.getY() +"]";
                         BattleshipLogger.adicionaLog(posAtual, descricaoAcontecimento);
+                        setAcabouAvez(false);
+                    }
+                    else
+                    {
+                        aconteceuAlgo = false;
                     }
                 } else if ((tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1).contains("!"))
                         && (tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 2).contains("~"))) {
@@ -122,6 +141,11 @@ public class BattleshipGameUI {
                         setAconteceuAlgo(true);
                         descricaoAcontecimento = "A bomba sinalizadora encontrou nada nessa posição. Tente novamente na próxima vez.";
                         BattleshipLogger.adicionaLog(posAtual, descricaoAcontecimento);
+                        setAcabouAvez(true);
+                    }
+                    else
+                    {
+                        aconteceuAlgo = false;
                     }
                 } else if ((!tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 1).contains("~"))
                         && (tabuleiro.getTabuleiro()[i][j].whoami().substring(tabuleiro.getTabuleiro()[i][j].whoami().length() - 2).contains("~"))) {
@@ -130,12 +154,14 @@ public class BattleshipGameUI {
                     System.out.print("[ ]\t"); //imprime "[ ]" = névoa (para esconder)
 
                     setAconteceuAlgo(false);
+                    setAcabouAvez(false);
 
                 } else //Naquela posição tem só água 
                 {
                     System.out.print("[ ]\t"); //imprime "[ ]" = névoa (para esconder)
 
                     setAconteceuAlgo(false);
+                    setAcabouAvez(false);
 
                 }
                 posAtual = null; //pra desalocar memória (o Garbage Collector poder coletar ele)
@@ -143,9 +169,9 @@ public class BattleshipGameUI {
             System.out.println("\n");
         }
         if (aconteceuAlgo) {
-            System.out.println(descricaoAcontecimento); //imprime o que aconteceu por último no tabuleiro
+            System.out.println("ULTIMO STATUS: " + descricaoAcontecimento); //imprime o que aconteceu por último no tabuleiro
         }
-        return aconteceuAlgo;
+        return acabouAvez;
     }
 
     /**
@@ -307,7 +333,7 @@ public class BattleshipGameUI {
      * @see
      * battleship.model.atributosDeJogo.ModoDistribManual#distribuirEmbarcacoes(Tabuleiro)
      */
-    public static String menuDistribuicaoOrientacao(int i) {
+    public static String menuDistribuicaoOrientacao() {
         boolean finished;
         String orientacao = null;
 
@@ -320,6 +346,7 @@ public class BattleshipGameUI {
                 System.out.println("2 - Vertical");
                 System.out.print("\nOpção: ");
                 orientacao = BattleshipHelper.processarMenuDistribuicaoOrientacao(BattleshipHelper.lerOpcao());
+                finished = true;
             } catch (BattleshipException bgex) {
                 System.err.println(bgex.getMessage());
                 BattleshipHelper.sleep(1); //pausa de 1 segundo
