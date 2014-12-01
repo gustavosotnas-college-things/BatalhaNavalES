@@ -11,6 +11,12 @@ import battleship.model.elementos.embarcacoes.PortaAvioes;
 import battleship.model.elementos.embarcacoes.Submarino;
 import java.util.Random;
 
+/**
+ * Realiza todas as operações necessarias para que o jogo execute com sucesso realizando 
+ * distribuição automatica.
+ * @author Renan O
+ * @author Gustavo Moraes
+ */
 public class ModoDistribAuto implements ModoDeDistribuicao {
 
     private Random gerador = new Random();

@@ -6,6 +6,12 @@ import battleship.model.elementos.Tabuleiro;
 import battleship.model.elementos.embarcacoes.Submarino;
 import battleship.view.BattleshipGameUI;
 
+/**
+ * Realiza todas as operações necessarias para que o jogo execute com sucesso realizando 
+ * distribuição automatica.
+ * @author Renan O
+ * @author Gustavo Moraes
+ */
 public class ModoDistribManual implements ModoDeDistribuicao{
 
     @Override
@@ -37,7 +43,7 @@ public class ModoDistribManual implements ModoDeDistribuicao{
     }
 
     private void distribuirNavioTamanho2(Tabuleiro tabuleiro) {
-        //a implementar
+       //a implementar
     }
 
     private void distribuirNavioTamanho3(Tabuleiro tabuleiro) {
