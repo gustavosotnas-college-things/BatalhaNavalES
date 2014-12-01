@@ -6,10 +6,8 @@ import battleship.controller.Posicao;
 import battleship.model.Jogo;
 import battleship.model.elementos.BombaExplosiva;
 import battleship.model.elementos.Celula;
-import battleship.model.elementos.Fogo;
 import battleship.model.elementos.Tabuleiro;
 import battleship.view.BattleshipGameUI;
-import battleship.view.BattleshipMenuUI;
 
 public class ModoTradicional implements ModoDeJogo {
 
@@ -20,9 +18,9 @@ public class ModoTradicional implements ModoDeJogo {
 
     public void comecarTurno(Tabuleiro tabuleiro) {
 
-        boolean acontecerAlgo = true;
+        boolean acabarAvezDoJogador = false;
 
-        while (acontecerAlgo) {
+        while (!acabarAvezDoJogador) {
 
             try {
                     BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
@@ -31,7 +29,8 @@ public class ModoTradicional implements ModoDeJogo {
                     Celula alvo = tabuleiro.getElemento(posicao);
 
                     tabuleiro.setElementoDistrib(new BombaExplosiva(alvo), posicao);
-                    acontecerAlgo = BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
+                    
+                    acabarAvezDoJogador = BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
                     BattleshipHelper.getchar();
                     verificaGameOver(tabuleiro);
 

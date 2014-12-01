@@ -39,9 +39,9 @@ public class ModoPQQD implements ModoDeJogo {
 
     public void comecarTurno(Tabuleiro tabuleiro) {
 
-        boolean acontecerAlgo = true;
+        boolean acabarAvezDoJogador = false;
 
-        while (acontecerAlgo) {
+        while (!acabarAvezDoJogador) {
 
             try {
                     BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
@@ -52,7 +52,7 @@ public class ModoPQQD implements ModoDeJogo {
 
                     tabuleiro.setElementoDistrib(bomba, posicao);
                     
-                    acontecerAlgo = BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
+                    acabarAvezDoJogador = BattleshipGameUI.exibeTabuleiroFiltrado(tabuleiro);
                     BattleshipHelper.getchar();
                     verificaGameOver(tabuleiro);
                     
