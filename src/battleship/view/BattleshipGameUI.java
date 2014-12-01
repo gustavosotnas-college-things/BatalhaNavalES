@@ -327,7 +327,6 @@ public class BattleshipGameUI {
      * (horizontal ou vertical) que o usuário deseja ter uma embarcação na
      * iteração atual de distribuição manual.
      *
-     * @param i o iterador de iterações de distribuição de embarcações
      * @return a string correspondente com o número da opção digitada pelo
      * usuário
      * @see

@@ -16,7 +16,7 @@ public class Main {
      * Função inicial do BatalhaNaval. É feita uma chamada para começar o menu
      * criando um novo Jogo e executando o mesmo.
      * 
-     * @param args
+     * @param args argumentos de CLI (não usado)
      */
     public static void main(String[] args) {
         try {

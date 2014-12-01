@@ -67,9 +67,8 @@ public class Tabuleiro {
      * Passa o valor de conteudo da celula para a matriz de celulas do tabuleiro.
      * @param conteudo conteudo de celula.
      * @param coord coordenada das posições da celula.
-     * @throws BattleshipGameException
      */
-    public void setElementoDistrib(Celula conteudo, Posicao coord) throws BattleshipGameException {
+    public void setElementoDistrib(Celula conteudo, Posicao coord) {
        
         tabuleiro[coord.getX()][coord.getY()] = conteudo;
        
@@ -79,7 +78,7 @@ public class Tabuleiro {
      * Passa o valor de conteudo da celula para a matriz de celulas do tabuleiro em caso de explosao.
      * @param conteudo conteudo de celula.
      * @param coord coordenada das posições da celula.
-     * @throws BattleshipGameException
+     * @throws BattleshipGameException quando na posição já existir um elemento equivalente.
      */
     public void setElementoGame(Celula conteudo, Posicao coord) throws BattleshipGameException {
         if (conteudo.getNome().equals(tabuleiro[coord.getX()][coord.getY()].getNome())) //se já tem tal elemento decorado anteriormente em dada posicao
